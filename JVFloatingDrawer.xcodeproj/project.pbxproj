@@ -14,6 +14,7 @@
 		2CE7E66E1A62D8470072121A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CE7E66D1A62D8470072121A /* Images.xcassets */; };
 		2CE7E6711A62D8470072121A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE7E66F1A62D8470072121A /* LaunchScreen.xib */; };
 		2CE7E67D1A62D8480072121A /* JVFloatingDrawerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */; };
+		2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		2CE7E6761A62D8470072121A /* JVFloatingDrawerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JVFloatingDrawerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE7E67B1A62D8480072121A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerTests.m; sourceTree = "<group>"; };
+		2CE7E6861A62E5A20072121A /* JVFloatingDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerViewController.h; sourceTree = "<group>"; };
+		2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				2CE7E6651A62D8470072121A /* AppDelegate.m */,
 				2CE7E6671A62D8470072121A /* ViewController.h */,
 				2CE7E6681A62D8470072121A /* ViewController.m */,
+				2CE7E6861A62E5A20072121A /* JVFloatingDrawerViewController.h */,
+				2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */,
 				2CE7E66A1A62D8470072121A /* Main.storyboard */,
 				2CE7E66D1A62D8470072121A /* Images.xcassets */,
 				2CE7E66F1A62D8470072121A /* LaunchScreen.xib */,
@@ -221,6 +226,7 @@
 			files = (
 				2CE7E6691A62D8470072121A /* ViewController.m in Sources */,
 				2CE7E6661A62D8470072121A /* AppDelegate.m in Sources */,
+				2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +420,7 @@
 				2CE7E6821A62D8480072121A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CE7E6831A62D8480072121A /* Build configuration list for PBXNativeTarget "JVFloatingDrawerTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +429,7 @@
 				2CE7E6851A62D8480072121A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
