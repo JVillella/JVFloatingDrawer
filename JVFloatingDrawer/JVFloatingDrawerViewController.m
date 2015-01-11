@@ -14,10 +14,33 @@
 
 @implementation JVFloatingDrawerViewController
 
+#pragma mark - Initialization
+
+#pragma mark - View Related
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+#pragma mark - Interaction
+
+- (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
+                completion:(void(^)(BOOL finished))completion {
+    
+}
+
+- (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
+                 completion:(void(^)(BOOL finished))completion {
+    
+}
+
+- (void)toggleDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
+                  completion:(void(^)(BOOL finished))completion {
+    
+}
+
+#pragma mark - Memory
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

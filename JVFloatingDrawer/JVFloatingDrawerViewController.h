@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
     JVFloatingDrawerSideRight
 };
 
-@class JVFloatingDrawerAnimator;
+@class JVFloatingDrawerSpringAnimator;
 
 @interface JVFloatingDrawerViewController : UIViewController
 
@@ -38,6 +38,6 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 
 #pragma mark - Animation
 
-@property (nonatomic, strong) JVFloatingDrawerAnimator *animator;
+@property (nonatomic, strong) JVFloatingDrawerSpringAnimator *drawerAnimator;
 
 @end

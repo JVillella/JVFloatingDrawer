@@ -15,6 +15,7 @@
 		2CE7E6711A62D8470072121A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE7E66F1A62D8470072121A /* LaunchScreen.xib */; };
 		2CE7E67D1A62D8480072121A /* JVFloatingDrawerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */; };
 		2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */; };
+		2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,9 @@
 		2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerTests.m; sourceTree = "<group>"; };
 		2CE7E6861A62E5A20072121A /* JVFloatingDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerViewController.h; sourceTree = "<group>"; };
 		2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerViewController.m; sourceTree = "<group>"; };
+		2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerSpringAnimator.h; sourceTree = "<group>"; };
+		2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerSpringAnimator.m; sourceTree = "<group>"; };
+		2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerAnimation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,9 @@
 				2CE7E6681A62D8470072121A /* ViewController.m */,
 				2CE7E6861A62E5A20072121A /* JVFloatingDrawerViewController.h */,
 				2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */,
+				2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */,
+				2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */,
+				2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */,
 				2CE7E66A1A62D8470072121A /* Main.storyboard */,
 				2CE7E66D1A62D8470072121A /* Images.xcassets */,
 				2CE7E66F1A62D8470072121A /* LaunchScreen.xib */,
@@ -226,6 +233,7 @@
 			files = (
 				2CE7E6691A62D8470072121A /* ViewController.m in Sources */,
 				2CE7E6661A62D8470072121A /* AppDelegate.m in Sources */,
+				2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */,
 				2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
 			);
