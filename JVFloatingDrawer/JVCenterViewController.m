@@ -29,8 +29,4 @@ static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JV
     [self.webview loadRequest:webpageRequest];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 @end
