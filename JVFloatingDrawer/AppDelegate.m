@@ -9,25 +9,32 @@
 #import "AppDelegate.h"
 #import "JVFloatingDrawerViewController.h"
 
-static NSString * const kJVLeftDrawerNibName   = @"";
-static NSString * const kJVRightDrawerNibName  = @"";
-static NSString * const kJVCenterDrawerNibName = @"";
+static NSString * const kJVDrawersStoryboardName = @"Drawers";
+
+static NSString * const kJVLeftDrawerStoryboardID = @"JVLeftDrawerViewControllerStoryboardID";
+static NSString * const kJVRightDrawerStoryboardID = @"JVRightDrawerViewControllerStoryboardID";
+static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboardID";
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
 @property (nonatomic, strong) UITableViewController *leftDrawerViewController;
 @property (nonatomic, strong) UITableViewController *rightDrawerViewController;
-@property (nonatomic, strong) UIViewController *centerDrawerViewController;
+@property (nonatomic, strong) UIViewController *centerViewController;
+
+@property (nonatomic, strong, readonly) UIStoryboard *drawersStoryboard;
 
 @end
 
 @implementation AppDelegate
 
+@synthesize drawersStoryboard = _drawersStoryboard;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.drawerViewController;
+//    self.window.rootViewController = self.drawerViewController;
+    self.window.rootViewController = self.centerViewController;
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -55,7 +62,7 @@ static NSString * const kJVCenterDrawerNibName = @"";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Drawer View Controller
+#pragma mark - Drawer View Controllers
 
 - (JVFloatingDrawerViewController *)drawerViewController {
     if (!_drawerViewController) {
@@ -67,7 +74,7 @@ static NSString * const kJVCenterDrawerNibName = @"";
 
 - (UITableViewController *)leftDrawerViewController {
     if (!_leftDrawerViewController) {
-        _leftDrawerViewController = [[UITableViewController alloc] initWithNibName:kJVLeftDrawerNibName bundle:nil];
+        _leftDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVLeftDrawerStoryboardID];
     }
     
     return _leftDrawerViewController;
@@ -75,18 +82,26 @@ static NSString * const kJVCenterDrawerNibName = @"";
 
 - (UITableViewController *)rightDrawerViewController {
     if(!_rightDrawerViewController) {
-        _rightDrawerViewController = [[UITableViewController alloc] initWithNibName:kJVRightDrawerNibName bundle:nil];
+        _rightDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVRightDrawerStoryboardID];
     }
     
     return _rightDrawerViewController;
 }
 
-- (UIViewController *)centerDrawerViewController {
-    if (!_centerDrawerViewController) {
-        _centerDrawerViewController = [[UIViewController alloc] initWithNibName:kJVCenterDrawerNibName bundle:nil];
+- (UIViewController *)centerViewController {
+    if (!_centerViewController) {
+        _centerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVCenterStoryboardID];
     }
     
-    return _centerDrawerViewController;
+    return _centerViewController;
+}
+
+- (UIStoryboard *)drawersStoryboard {
+    if(!_drawersStoryboard) {
+        _drawersStoryboard = [UIStoryboard storyboardWithName:kJVDrawersStoryboardName bundle:nil];
+    }
+    
+    return _drawersStoryboard;
 }
 
 @end
