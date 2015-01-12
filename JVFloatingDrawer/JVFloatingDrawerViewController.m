@@ -8,10 +8,25 @@
 
 #import "JVFloatingDrawerViewController.h"
 #import "JVFloatingDrawerView.h"
+#import "JVFloatingDrawerAnimation.h"
+
+NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
+    const char* c_str = 0;
+#define PROCESS_VAL(p) case(p): c_str = #p; break;
+    switch(side) {
+            PROCESS_VAL(JVFloatingDrawerSideNone);
+            PROCESS_VAL(JVFloatingDrawerSideLeft);
+            PROCESS_VAL(JVFloatingDrawerSideRight);
+    }
+#undef PROCESS_VAL
+    
+    return [NSString stringWithCString:c_str encoding:NSASCIIStringEncoding];
+}
 
 @interface JVFloatingDrawerViewController ()
 
 @property (nonatomic, strong, readonly) JVFloatingDrawerView *drawerView;
+@property (nonatomic, assign) JVFloatingDrawerSide currentlyOpenedSide;
 
 @end
 
@@ -28,7 +43,7 @@
 }
 
 - (void)setup {
-    
+    self.currentlyOpenedSide = JVFloatingDrawerSideNone;
 }
 
 #pragma mark - View Related
@@ -53,18 +68,52 @@
 
 #pragma mark - Interaction
 
-- (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                completion:(void(^)(BOOL finished))completion {
+#warning Implement animated flag - doesn't acknowledge it currently
+
+- (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
+    NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
+    
+    if(self.currentlyOpenedSide != drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
+        UIViewController *sideViewController = [self viewControllerForDrawerSide:drawerSide];
+        UIViewController *centerViewController = self.centerViewController;
+        
+        // First close opened drawer and then open new drawer
+        [self closeDrawerWithSide:self.currentlyOpenedSide animated:animated completion:^(BOOL finished) {
+            [self.animator presentationAnimationWithSide:drawerSide
+                                      sideViewController:sideViewController
+                                    centerViewController:centerViewController
+                                              completion:completion];
+        }];
+    }
+    
+    self.currentlyOpenedSide = drawerSide;
 }
 
-- (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                 completion:(void(^)(BOOL finished))completion {
+- (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
+    NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
     
+    if(self.currentlyOpenedSide == drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
+        UIViewController *sideViewController = [self viewControllerForDrawerSide:drawerSide];
+        UIViewController *centerViewController = self.centerViewController;
+        
+        [self.animator dismissAnimationWithSide:drawerSide
+                             sideViewController:sideViewController
+                           centerViewController:centerViewController
+                                     completion:completion];
+    }
+    
+    self.currentlyOpenedSide = JVFloatingDrawerSideNone;
 }
 
-- (void)toggleDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated
-                  completion:(void(^)(BOOL finished))completion {
-    
+- (void)toggleDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
+    if(drawerSide != JVFloatingDrawerSideNone) {
+        if(drawerSide == self.currentlyOpenedSide) {
+            [self closeDrawerWithSide:drawerSide animated:animated completion:completion];
+        } else {
+            [self openDrawerWithSide:drawerSide animated:animated completion:completion];
+        }
+        
+    }
 }
 
 #pragma mark - Managed View Controllers
@@ -128,6 +177,18 @@
 
 - (UIImage *)backgroundImage {
     return self.drawerView.backgroundImageView.image;
+}
+
+#pragma mark - Helpers
+
+- (UIViewController *)viewControllerForDrawerSide:(JVFloatingDrawerSide)drawerSide {
+    UIViewController *sideViewController = nil;
+    switch (drawerSide) {
+        case JVFloatingDrawerSideLeft:  sideViewController = self.leftViewController;  break;
+        case JVFloatingDrawerSideRight: sideViewController = self.rightViewController; break;
+        case JVFloatingDrawerSideNone: sideViewController = nil; break;
+    }
+    return sideViewController;
 }
 
 #pragma mark - Memory

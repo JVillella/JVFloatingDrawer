@@ -23,7 +23,8 @@
  */
 - (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide
                    sideViewController:(UIViewController *)sideViewController
-                 centerViewController:(UIViewController *)centerViewController;
+                 centerViewController:(UIViewController *)centerViewController
+                           completion:(void(^)(BOOL finished))completion;
 
 /**
  *  Implementations should animate the sideViewController being dismissed.
@@ -33,7 +34,8 @@
  */
 - (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide
               sideViewController:(UIViewController *)sideViewController
-            centerViewController:(UIViewController *)centerViewController;
+            centerViewController:(UIViewController *)centerViewController
+                      completion:(void(^)(BOOL finished))completion;
 
 @end
 

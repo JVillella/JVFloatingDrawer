@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JVFloatingDrawerAnimation;
+
 typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
-    JVFloatingDrawerSideLeft = 0,
+    JVFloatingDrawerSideNone = 0,
+    JVFloatingDrawerSideLeft,
     JVFloatingDrawerSideRight
 };
-
-@class JVFloatingDrawerSpringAnimator;
 
 @interface JVFloatingDrawerViewController : UIViewController
 
@@ -43,7 +44,7 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 
 #pragma mark - Animation
 
-@property (nonatomic, strong) JVFloatingDrawerSpringAnimator *drawerAnimator;
+@property (nonatomic, strong) id<JVFloatingDrawerAnimation> animator;
 
 #pragma mark - Background
 

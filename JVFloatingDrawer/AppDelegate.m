@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "JVFloatingDrawerViewController.h"
+#import "JVFloatingDrawerSpringAnimator.h"
 
 static NSString * const kJVDrawersStoryboardName = @"Drawers";
 
@@ -109,6 +110,8 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
     self.drawerViewController.leftViewController = self.leftDrawerViewController;
     self.drawerViewController.rightViewController = self.rightDrawerViewController;
     self.drawerViewController.centerViewController = self.centerViewController;
+    
+    self.drawerViewController.animator = [[JVFloatingDrawerSpringAnimator alloc] init];
     
     self.drawerViewController.backgroundImage = [UIImage imageNamed:@"sky"];
 }
