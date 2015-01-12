@@ -7,7 +7,7 @@
         <!--Center View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="JVCenterViewControllerStoryboardID" id="BYZ-38-t0r" userLabel="Center View Controller" customClass="JVCenterViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Center View Controller" customClass="JVCenterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -238,7 +238,7 @@
         <!--Navigation Controller-->
         <scene sceneID="mse-sm-am7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G8o-dg-bca" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="JVCenterViewControllerStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="G8o-dg-bca" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7uK-uP-nde">
