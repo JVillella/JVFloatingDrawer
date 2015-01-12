@@ -34,9 +34,6 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 //    [self setupLeftViewContainer];
 //    [self setupRightViewContainer];
 //    [self setupCenterViewContainer];
-    
-    self.leftViewContainerRevealWidth  = kJVDefaultViewContainerWidth;
-    self.rightViewContainerRevealWidth = kJVDefaultViewContainerWidth;
 }
 
 - (void)setupBackgroundImageView {
@@ -80,6 +77,7 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self addConstraint:trailingConstraint];
     
     self.leftViewContainerWidthConstraint = widthConstraint;
+    self.leftViewContainerRevealWidth  = kJVDefaultViewContainerWidth;
 }
 
 - (void)setupRightViewContainer {
@@ -101,6 +99,7 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self addConstraint:leadingConstraint];
     
     self.rightViewContainerWidthConstraint = widthConstraint;
+    self.rightViewContainerRevealWidth = kJVDefaultViewContainerWidth;
 }
 
 - (void)setupCenterViewContainer {

@@ -26,7 +26,7 @@
 }
 
 - (void)loadView {
-    _drawerView = [[JVFloatingDrawerView alloc] init];
+    _drawerView = [[JVFloatingDrawerView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = self.drawerView;
 }
 
@@ -63,7 +63,10 @@
 }
 
 - (void)setCenterViewController:(UIViewController *)centerViewController {
+    [self replaceViewController:self.centerViewController withViewController:centerViewController
+                      container:self.drawerView.centerViewContainer];
     
+    _centerViewController = centerViewController;
 }
 
 - (void)replaceViewController:(UIViewController *)sourceViewController withViewController:(UIViewController *)destinationViewController container:(UIView *)container {
@@ -74,7 +77,7 @@
     
     [self addChildViewController:destinationViewController];
     destinationViewController.view.frame = container.frame;
-    [self.view addSubview:destinationViewController.view];
+    [container addSubview:destinationViewController.view];
     [destinationViewController didMoveToParentViewController:self];
 }
 
@@ -94,6 +97,16 @@
 
 - (CGFloat)rightDrawerRevealWidth {
     return self.drawerView.rightViewContainerRevealWidth;
+}
+
+#pragma mark - Background Image
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    self.drawerView.backgroundImageView.image = backgroundImage;
+}
+
+- (UIImage *)backgroundImage {
+    return self.drawerView.backgroundImageView.image;
 }
 
 #pragma mark - Memory
