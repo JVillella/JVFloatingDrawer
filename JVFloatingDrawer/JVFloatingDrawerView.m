@@ -31,9 +31,9 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setup {
     [self setupBackgroundImageView];
-    [self setupLeftViewContainer];
-    [self setupRightViewContainer];
-    [self setupCenterViewContainer];
+//    [self setupLeftViewContainer];
+//    [self setupRightViewContainer];
+//    [self setupCenterViewContainer];
     
     self.leftViewContainerRevealWidth  = kJVDefaultViewContainerWidth;
     self.rightViewContainerRevealWidth = kJVDefaultViewContainerWidth;
@@ -41,6 +41,8 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setupBackgroundImageView {
     _backgroundImageView = [[UIImageView alloc] init];
+    [self.backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.backgroundImageView];
     
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual
@@ -61,6 +63,8 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setupLeftViewContainer {
     _leftViewContainer = [[UIView alloc] init];
+    [self.leftViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.leftViewContainer];
     
     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual
                                                                            toItem:self.centerViewContainer attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
@@ -80,7 +84,8 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setupRightViewContainer {
     _rightViewContainer = [[UIView alloc] init];
-    
+    [self.rightViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.rightViewContainer];
     
     NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual
                                                                            toItem:self.centerViewContainer attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
@@ -100,6 +105,8 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setupCenterViewContainer {
     _centerViewContainer = [[UIView alloc] init];
+    [self.centerViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:self.centerViewContainer];
     
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual

@@ -81,11 +81,19 @@
 #pragma mark - Reveal Widths
 
 - (void)setLeftDrawerRevealWidth:(CGFloat)leftDrawerRevealWidth {
-    
+    self.drawerView.leftViewContainerRevealWidth = leftDrawerRevealWidth;
 }
 
 - (void)setRightDrawerRevealWidth:(CGFloat)rightDrawerRevealWidth {
-    
+    self.drawerView.rightViewContainerRevealWidth = rightDrawerRevealWidth;
+}
+
+- (CGFloat)leftDrawerRevealWidth {
+    return self.drawerView.leftViewContainerRevealWidth;
+}
+
+- (CGFloat)rightDrawerRevealWidth {
+    return self.drawerView.rightViewContainerRevealWidth;
 }
 
 #pragma mark - Memory
