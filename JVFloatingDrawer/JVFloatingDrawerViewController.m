@@ -19,6 +19,18 @@
 
 #pragma mark - Initialization
 
+- (instancetype)init {
+    self = [super init];
+    if(self) {
+        [self setup];
+    }
+    return self;
+}
+
+- (void)setup {
+    
+}
+
 #pragma mark - View Related
 
 - (void)viewDidLoad {
@@ -26,8 +38,17 @@
 }
 
 - (void)loadView {
-    _drawerView = [[JVFloatingDrawerView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.drawerView = [[JVFloatingDrawerView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.view = self.drawerView;
+}
+
+// Convenience type-wrapper around self.view. Maybe not the best idea?
+- (void)setDrawerView:(JVFloatingDrawerView *)drawerView {
+    self.view = drawerView;
+}
+
+- (JVFloatingDrawerView *)drawerView {
+    return (JVFloatingDrawerView *)self.view;
 }
 
 #pragma mark - Interaction

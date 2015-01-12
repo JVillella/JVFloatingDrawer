@@ -108,7 +108,7 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
 - (void)configureDrawerViewController {
 //    self.drawerViewController.leftViewController = self.leftDrawerViewController;
 //    self.drawerViewController.rightViewController = self.rightDrawerViewController;
-//    self.drawerViewController.centerViewController = self.centerViewController;
+    self.drawerViewController.centerViewController = self.centerViewController;
     
     self.drawerViewController.backgroundImage = [UIImage imageNamed:@"sky"];
 }
