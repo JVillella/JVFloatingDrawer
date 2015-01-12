@@ -12,5 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
++ (AppDelegate *)globalDelegate;
+
+- (void)toggleLeftDrawer:(id)sender;
+- (void)toggleRightDrawer:(id)sender;
+
 @end
 

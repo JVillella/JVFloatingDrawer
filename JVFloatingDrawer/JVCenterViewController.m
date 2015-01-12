@@ -7,6 +7,7 @@
 //
 
 #import "JVCenterViewController.h"
+#import "AppDelegate.h"
 
 static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JVFloatingDrawer";
 
@@ -28,5 +29,16 @@ static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JV
     NSURLRequest *webpageRequest = [NSURLRequest requestWithURL:webpageURL];
     [self.webview loadRequest:webpageRequest];
 }
+
+#pragma mark - Actions
+
+- (IBAction)actionToggleLeftDrawer:(id)sender {
+    [[AppDelegate globalDelegate] toggleLeftDrawer:self];
+}
+
+- (IBAction)actionToggleRightDrawer:(id)sender {
+    [[AppDelegate globalDelegate] toggleRightDrawer:self];
+}
+
 
 @end

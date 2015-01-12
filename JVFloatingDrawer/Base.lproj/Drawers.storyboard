@@ -30,11 +30,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Floating Drawer" id="vZ9-nj-igO">
-                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="x1a-WG-ZGa">
+                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="x1a-WG-ZGa" userLabel="Left Drawer Toggle Button">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="actionToggleLeftDrawer:" destination="BYZ-38-t0r" id="NE3-1Q-uyA"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="399-list1" id="U64-VY-3UU">
+                        <barButtonItem key="rightBarButtonItem" image="399-list1" id="U64-VY-3UU" userLabel="Right Drawer Toggle Button">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="actionToggleRightDrawer:" destination="BYZ-38-t0r" id="LI6-d6-eV9"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

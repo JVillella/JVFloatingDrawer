@@ -31,8 +31,8 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setup {
     [self setupBackgroundImageView];
-//    [self setupLeftViewContainer];
-//    [self setupRightViewContainer];
+    [self setupLeftViewContainer];
+    [self setupRightViewContainer];
     [self setupCenterViewContainer];
 }
 

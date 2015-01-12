@@ -106,11 +106,25 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
 }
 
 - (void)configureDrawerViewController {
-//    self.drawerViewController.leftViewController = self.leftDrawerViewController;
-//    self.drawerViewController.rightViewController = self.rightDrawerViewController;
+    self.drawerViewController.leftViewController = self.leftDrawerViewController;
+    self.drawerViewController.rightViewController = self.rightDrawerViewController;
     self.drawerViewController.centerViewController = self.centerViewController;
     
     self.drawerViewController.backgroundImage = [UIImage imageNamed:@"sky"];
+}
+
+#pragma mark - Global Access Helper
+
++ (AppDelegate *)globalDelegate {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+}
+
+- (void)toggleLeftDrawer:(id)sender {
+    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:YES completion:nil];
+}
+
+- (void)toggleRightDrawer:(id)sender {
+    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:YES completion:nil];
 }
 
 @end
