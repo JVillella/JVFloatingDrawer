@@ -7,16 +7,29 @@
 //
 
 #import "AppDelegate.h"
+#import "JVFloatingDrawerViewController.h"
+
+static NSString * const kJVLeftDrawerNibName   = @"";
+static NSString * const kJVRightDrawerNibName  = @"";
+static NSString * const kJVCenterDrawerNibName = @"";
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
+@property (nonatomic, strong) UITableViewController *leftDrawerViewController;
+@property (nonatomic, strong) UITableViewController *rightDrawerViewController;
+@property (nonatomic, strong) UIViewController *centerDrawerViewController;
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.drawerViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -40,6 +53,40 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Drawer View Controller
+
+- (JVFloatingDrawerViewController *)drawerViewController {
+    if (!_drawerViewController) {
+        _drawerViewController = [[JVFloatingDrawerViewController alloc] init];
+    }
+    
+    return _drawerViewController;
+}
+
+- (UITableViewController *)leftDrawerViewController {
+    if (!_leftDrawerViewController) {
+        _leftDrawerViewController = [[UITableViewController alloc] initWithNibName:kJVLeftDrawerNibName bundle:nil];
+    }
+    
+    return _leftDrawerViewController;
+}
+
+- (UITableViewController *)rightDrawerViewController {
+    if(!_rightDrawerViewController) {
+        _rightDrawerViewController = [[UITableViewController alloc] initWithNibName:kJVRightDrawerNibName bundle:nil];
+    }
+    
+    return _rightDrawerViewController;
+}
+
+- (UIViewController *)centerDrawerViewController {
+    if (!_centerDrawerViewController) {
+        _centerDrawerViewController = [[UIViewController alloc] initWithNibName:kJVCenterDrawerNibName bundle:nil];
+    }
+    
+    return _centerDrawerViewController;
 }
 
 @end
