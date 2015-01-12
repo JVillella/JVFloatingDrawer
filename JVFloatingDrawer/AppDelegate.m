@@ -7,16 +7,36 @@
 //
 
 #import "AppDelegate.h"
+#import "JVFloatingDrawerViewController.h"
+
+static NSString * const kJVDrawersStoryboardName = @"Drawers";
+
+static NSString * const kJVLeftDrawerStoryboardID = @"JVLeftDrawerViewControllerStoryboardID";
+static NSString * const kJVRightDrawerStoryboardID = @"JVRightDrawerViewControllerStoryboardID";
+static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboardID";
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
+@property (nonatomic, strong) UITableViewController *leftDrawerViewController;
+@property (nonatomic, strong) UITableViewController *rightDrawerViewController;
+@property (nonatomic, strong) UIViewController *centerViewController;
+
+@property (nonatomic, strong, readonly) UIStoryboard *drawersStoryboard;
 
 @end
 
 @implementation AppDelegate
 
+@synthesize drawersStoryboard = _drawersStoryboard;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.rootViewController = self.drawerViewController;
+    self.window.rootViewController = self.centerViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -40,6 +60,48 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Drawer View Controllers
+
+- (JVFloatingDrawerViewController *)drawerViewController {
+    if (!_drawerViewController) {
+        _drawerViewController = [[JVFloatingDrawerViewController alloc] init];
+    }
+    
+    return _drawerViewController;
+}
+
+- (UITableViewController *)leftDrawerViewController {
+    if (!_leftDrawerViewController) {
+        _leftDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVLeftDrawerStoryboardID];
+    }
+    
+    return _leftDrawerViewController;
+}
+
+- (UITableViewController *)rightDrawerViewController {
+    if(!_rightDrawerViewController) {
+        _rightDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVRightDrawerStoryboardID];
+    }
+    
+    return _rightDrawerViewController;
+}
+
+- (UIViewController *)centerViewController {
+    if (!_centerViewController) {
+        _centerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVCenterStoryboardID];
+    }
+    
+    return _centerViewController;
+}
+
+- (UIStoryboard *)drawersStoryboard {
+    if(!_drawersStoryboard) {
+        _drawersStoryboard = [UIStoryboard storyboardWithName:kJVDrawersStoryboardName bundle:nil];
+    }
+    
+    return _drawersStoryboard;
 }
 
 @end

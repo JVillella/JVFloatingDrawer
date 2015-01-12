@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JVCenterViewController.h
 //  JVFloatingDrawer
 //
 //  Created by Julian Villella on 2015-01-11.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JVCenterViewController : UIViewController
 
 @end
-
