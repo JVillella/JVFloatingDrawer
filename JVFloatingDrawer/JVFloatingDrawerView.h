@@ -10,10 +10,13 @@
 
 @interface JVFloatingDrawerView : UIView
 
-@property (nonatomic, strong) UIView *leftContainer;
-@property (nonatomic, strong) UIView *rightContainer;
-@property (nonatomic, strong) UIView *centerContainer;
+@property (nonatomic, strong) UIView *leftViewContainer;
+@property (nonatomic, strong) UIView *rightViewContainer;
+@property (nonatomic, strong) UIView *centerViewContainer;
 
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
+@property (nonatomic, assign) CGFloat leftViewContainerRevealWidth;
+@property (nonatomic, assign) CGFloat rightViewContainerRevealWidth;
 
 @end

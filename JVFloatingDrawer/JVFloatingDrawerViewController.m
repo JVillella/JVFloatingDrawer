@@ -50,14 +50,14 @@
 
 - (void)setLeftViewController:(UIViewController *)leftViewController {
     [self replaceViewController:self.leftViewController
-             withViewController:leftViewController container:self.drawerView.leftContainer];
+             withViewController:leftViewController container:self.drawerView.leftViewContainer];
     
     _leftViewController = leftViewController;
 }
 
 - (void)setRightViewController:(UIViewController *)rightViewController {
     [self replaceViewController:self.rightViewController withViewController:rightViewController
-                      container:self.drawerView.rightContainer];
+                      container:self.drawerView.rightViewContainer];
     
     _rightViewController = rightViewController;
 }
