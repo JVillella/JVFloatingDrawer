@@ -17,7 +17,19 @@
 - (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide
                    sideViewController:(UIViewController *)sideViewController
                  centerViewController:(UIViewController *)centerViewController {
-
+    
+    void (^springAnimation)() = ^{
+        
+    };
+    
+    void (^animationCompletion)(BOOL finished) = ^(BOOL finished) {
+        
+    };
+    
+    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
+         usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
+                        options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
+                     completion:animationCompletion];
 }
 
 - (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide

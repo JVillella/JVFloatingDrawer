@@ -23,6 +23,11 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 @property (nonatomic, strong) UIViewController *leftViewController;
 @property (nonatomic, strong) UIViewController *rightViewController;
 
+#pragma mark - Reveal Widths
+
+@property (nonatomic, assign) CGFloat leftDrawerRevealWidth;
+@property (nonatomic, assign) CGFloat rightDrawerRevealWidth;
+
 #pragma mark - Interaction
 
 @property (nonatomic, assign, getter=isDragToRevealEnabled) BOOL dragToRevealEnabled;

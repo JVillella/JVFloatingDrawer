@@ -16,6 +16,7 @@
 		2CE7E67D1A62D8480072121A /* JVFloatingDrawerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */; };
 		2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */; };
 		2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */; };
+		2CE7E6911A63558E0072121A /* JVFloatingDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerSpringAnimator.h; sourceTree = "<group>"; };
 		2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerSpringAnimator.m; sourceTree = "<group>"; };
 		2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerAnimation.h; sourceTree = "<group>"; };
+		2CE7E68F1A63558E0072121A /* JVFloatingDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerView.h; sourceTree = "<group>"; };
+		2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				2CE7E6681A62D8470072121A /* ViewController.m */,
 				2CE7E6861A62E5A20072121A /* JVFloatingDrawerViewController.h */,
 				2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */,
+				2CE7E68F1A63558E0072121A /* JVFloatingDrawerView.h */,
+				2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */,
 				2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */,
 				2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */,
 				2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */,
@@ -236,6 +241,7 @@
 				2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */,
 				2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
+				2CE7E6911A63558E0072121A /* JVFloatingDrawerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
