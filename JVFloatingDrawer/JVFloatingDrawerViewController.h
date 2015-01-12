@@ -45,4 +45,8 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 
 @property (nonatomic, strong) JVFloatingDrawerSpringAnimator *drawerAnimator;
 
+#pragma mark - Background
+
+@property (nonatomic, strong) UIImage *backgroundImage;
+
 @end

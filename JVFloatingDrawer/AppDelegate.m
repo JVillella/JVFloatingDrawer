@@ -33,8 +33,9 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.rootViewController = self.drawerViewController;
-    self.window.rootViewController = self.centerViewController;
+    self.window.rootViewController = self.drawerViewController;
+    [self configureDrawerViewController];
+    
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -102,6 +103,14 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
     }
     
     return _drawersStoryboard;
+}
+
+- (void)configureDrawerViewController {
+    self.drawerViewController.leftViewController = self.leftDrawerViewController;
+    self.drawerViewController.rightViewController = self.rightDrawerViewController;
+    self.drawerViewController.centerViewController = self.centerViewController;
+    
+    self.drawerViewController.backgroundImage = [UIImage imageNamed:@"sky"];
 }
 
 @end
