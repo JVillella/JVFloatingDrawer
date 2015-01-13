@@ -145,11 +145,19 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 ////////////////// REFACTOR ME //////////////////
 
 - (void)applyBorderRadiusToCenterViewContainer {
-
+    CALayer *centerLayer = self.drawerView.centerViewContainer.layer;
+    centerLayer.borderColor = [UIColor clearColor].CGColor;
+    centerLayer.borderWidth = 1.0;
+    centerLayer.cornerRadius = 5.0;
+    self.drawerView.centerViewContainer.clipsToBounds = YES;
 }
 
 - (void)removeBorderRadiusFromCenterViewContainer {
-
+    CALayer *centerLayer = self.drawerView.centerViewContainer.layer;
+    centerLayer.borderColor = [UIColor clearColor].CGColor;
+    centerLayer.borderWidth = 0.0;
+    centerLayer.cornerRadius = 0.0;
+    self.drawerView.centerViewContainer.clipsToBounds = YES;
 }
 
 - (void)applyShadowToCenterViewContainer {
