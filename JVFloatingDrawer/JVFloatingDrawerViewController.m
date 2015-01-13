@@ -91,7 +91,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         [self addDrawerGestures];
         
-        [self applyBorderRadiusToCenterViewContainer];
+        [self applyBorderRadiusToCenterViewController];
         [self applyShadowToCenterViewContainer];
     }
     
@@ -111,7 +111,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         [self restoreGestures];
         
-        [self removeBorderRadiusFromCenterViewContainer];
+        [self removeBorderRadiusFromCenterViewController];
         [self removeShadowFromCenterViewContainer];
     }
 }
@@ -147,40 +147,45 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 ////////////////// REFACTOR ME //////////////////
 
-- (void)applyBorderRadiusToCenterViewContainer {
-    /*
-    CALayer *centerLayer = self.drawerView.centerViewContainer.layer;
+// Notice, border is applied to centerViewController.view whereas shadow is applied to
+// drawerView.centerViewContainer. This is because cornerRadius requires masksToBounds = YES
+// but for shadows to render outside the view, masksToBounds must be NO. So we apply them on
+// different views.
+
+- (void)applyBorderRadiusToCenterViewController {
+    CALayer *centerLayer = self.centerViewController.view.layer;
     centerLayer.borderColor = [UIColor clearColor].CGColor;
     centerLayer.borderWidth = 1.0;
     centerLayer.cornerRadius = kJVCenterViewContainerCornerRadius;
-    self.drawerView.centerViewContainer.clipsToBounds = YES;
-    */
+    centerLayer.masksToBounds = YES;
 }
 
-- (void)removeBorderRadiusFromCenterViewContainer {
-    /*
-    CALayer *centerLayer = self.drawerView.centerViewContainer.layer;
+- (void)removeBorderRadiusFromCenterViewController {
+    CALayer *centerLayer = self.centerViewController.view.layer;
     centerLayer.borderColor = [UIColor clearColor].CGColor;
     centerLayer.borderWidth = 0.0;
     centerLayer.cornerRadius = 0.0;
-     */
-//    self.drawerView.centerViewContainer.clipsToBounds = NO;
+    centerLayer.masksToBounds = NO;
 }
 
 - (void)applyShadowToCenterViewContainer {
     CALayer *layer = self.drawerView.centerViewContainer.layer;
-    layer.shadowRadius  = 8.0;
-//    shadowLayer.shadowPath = [[UIBezierPath bezierPathWithRoundedRect:self.drawerView.centerViewContainer.frame
-//                                                         cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
-//    layer.shadowPath = [[UIBezierPath bezierPathWithRect:self.drawerView.centerViewContainer.frame] CGPath];
-    layer.shadowPath = [[UIBezierPath bezierPathWithRect:CGRectMake(100.0, 100.0, 100.0, 100.0)] CGPath];
+//    CALayer *layer = [CALayer layer];
+    layer.shadowRadius  = 20.0;
+    
+    CGFloat increase = layer.shadowRadius;
+    CGRect centerViewContainerRect = self.drawerView.centerViewContainer.bounds;
+    centerViewContainerRect.origin.x -= increase;
+    centerViewContainerRect.origin.y -= increase;
+    centerViewContainerRect.size.width  += 2.0 * increase;
+    centerViewContainerRect.size.height += 2.0 * increase;
+    
+    layer.shadowPath    = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
     layer.shadowColor   = [UIColor blackColor].CGColor;
-    layer.shadowOpacity = 1.0;
+    layer.shadowOpacity = 0.5;
     layer.shadowOffset  = CGSizeMake(0.0, 0.0);
-//    shadowLayer.masksToBounds = NO;
-//    shadowLayer.name = kJVCenterViewContainerShadowLayerName;
-//    [self.drawerView.centerViewContainer.layer insertSublayer:shadowLayer atIndex:0];
-
+    layer.masksToBounds = NO;
+    
     // TODO Move this out, not just related to shadows in specific, but that is why we are using it.
 //    self.view.layer.shouldRasterize = YES;
 //    self.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -191,11 +196,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     layer.shadowRadius  = 0.0;
     layer.shadowOpacity = 0.0;
     
-//    for(CALayer *layer in [NSArray arrayWithArray:self.drawerView.centerViewContainer.layer.sublayers]) {
-//        if ([layer.name isEqualToString:kJVCenterViewContainerShadowLayerName]) {
-//            [layer removeFromSuperlayer];
-//        }
-//    }
+// TODO Move this out, not just related to shadows in specific, but that is why we are using it.
+//    self.view.layer.shouldRasterize = NO;
 }
 
 ////////////////// REFACTOR ME //////////////////
