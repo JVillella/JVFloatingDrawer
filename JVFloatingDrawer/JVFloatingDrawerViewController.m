@@ -78,7 +78,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         // First close opened drawer and then open new drawer
         if(self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
-            [self.animator dismissAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:^(BOOL finished) {
+            [self closeDrawerWithSide:self.currentlyOpenedSide animated:YES completion:^(BOOL finished) {
                 [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
             }];
         } else {
