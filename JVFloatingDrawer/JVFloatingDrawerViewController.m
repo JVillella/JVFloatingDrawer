@@ -154,7 +154,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 - (void)applyBorderRadiusToCenterViewController {
     CALayer *centerLayer = self.centerViewController.view.layer;
-    centerLayer.borderColor = [UIColor clearColor].CGColor;
+    centerLayer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
     centerLayer.borderWidth = 1.0;
     centerLayer.cornerRadius = kJVCenterViewContainerCornerRadius;
     centerLayer.masksToBounds = YES;
@@ -182,7 +182,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     
     layer.shadowPath    = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
     layer.shadowColor   = [UIColor blackColor].CGColor;
-    layer.shadowOpacity = 0.5;
+    layer.shadowOpacity = 0.4;
     layer.shadowOffset  = CGSizeMake(0.0, 0.0);
     layer.masksToBounds = NO;
     
