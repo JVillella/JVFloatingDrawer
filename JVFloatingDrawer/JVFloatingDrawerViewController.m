@@ -54,7 +54,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 - (void)loadView {
     self.drawerView = [[JVFloatingDrawerView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view = self.drawerView;
 }
 
 // Convenience type-wrapper around self.view. Maybe not the best idea?
@@ -73,17 +72,18 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
     NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
     
-    if(self.currentlyOpenedSide != drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
-        UIViewController *sideViewController = [self viewControllerForDrawerSide:drawerSide];
-        UIViewController *centerViewController = self.centerViewController;
+    if(self.currentlyOpenedSide != drawerSide) {
+        UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
+        UIView *centerView = self.drawerView.centerViewContainer;
         
         // First close opened drawer and then open new drawer
-        [self closeDrawerWithSide:self.currentlyOpenedSide animated:animated completion:^(BOOL finished) {
-            [self.animator presentationAnimationWithSide:drawerSide
-                                      sideViewController:sideViewController
-                                    centerViewController:centerViewController
-                                              completion:completion];
-        }];
+        if(self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
+            [self.animator dismissAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:^(BOOL finished) {
+                [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+            }];
+        } else {
+            [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+        }
     }
     
     self.currentlyOpenedSide = drawerSide;
@@ -93,13 +93,10 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
     
     if(self.currentlyOpenedSide == drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
-        UIViewController *sideViewController = [self viewControllerForDrawerSide:drawerSide];
-        UIViewController *centerViewController = self.centerViewController;
+        UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
+        UIView *centerView = self.drawerView.centerViewContainer;
         
-        [self.animator dismissAnimationWithSide:drawerSide
-                             sideViewController:sideViewController
-                           centerViewController:centerViewController
-                                     completion:completion];
+        [self.animator dismissAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
     }
     
     self.currentlyOpenedSide = JVFloatingDrawerSideNone;
@@ -146,8 +143,17 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     [sourceViewController removeFromParentViewController];
     
     [self addChildViewController:destinationViewController];
-    destinationViewController.view.frame = container.frame;
     [container addSubview:destinationViewController.view];
+
+//    destinationViewController.view.frame = container.frame;
+    
+    UIView *destinationView = destinationViewController.view;
+    destinationView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(destinationView);
+    [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[destinationView]|" options:0 metrics:nil views:views]];
+    [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[destinationView]|" options:0 metrics:nil views:views]];
+
     [destinationViewController didMoveToParentViewController:self];
 }
 
@@ -184,7 +190,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 - (UIViewController *)viewControllerForDrawerSide:(JVFloatingDrawerSide)drawerSide {
     UIViewController *sideViewController = nil;
     switch (drawerSide) {
-        case JVFloatingDrawerSideLeft:  sideViewController = self.leftViewController;  break;
+        case JVFloatingDrawerSideLeft: sideViewController = self.leftViewController; break;
         case JVFloatingDrawerSideRight: sideViewController = self.rightViewController; break;
         case JVFloatingDrawerSideNone: sideViewController = nil; break;
     }

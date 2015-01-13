@@ -8,7 +8,7 @@
 
 #import "JVFloatingDrawerView.h"
 
-static const CGFloat kJVDefaultViewContainerWidth = 80.0;
+static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 @interface JVFloatingDrawerView ()
 
@@ -31,9 +31,9 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (void)setup {
     [self setupBackgroundImageView];
+    [self setupCenterViewContainer];
     [self setupLeftViewContainer];
     [self setupRightViewContainer];
-    [self setupCenterViewContainer];
 }
 
 - (void)setupBackgroundImageView {
@@ -42,17 +42,10 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self addSubview:self.backgroundImageView];
     
     NSArray *constraints = @[
-        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
-        
-        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
-        
-        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
-        
-        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.backgroundImageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
     ];
     
     [self addConstraints:constraints];
@@ -63,21 +56,18 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self.leftViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.leftViewContainer];
     
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.centerViewContainer attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.centerViewContainer attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    NSArray *constraints = @[
+        [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
+        widthConstraint
+    ];
     
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.centerViewContainer attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
-    
-    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual
-                                                                             toItem:self.centerViewContainer attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0];
-    
-    [self addConstraint:heightConstraint];
-    [self addConstraint:widthConstraint];
-    [self addConstraint:trailingConstraint];
+    [self addConstraints:constraints];
     
     self.leftViewContainerWidthConstraint = widthConstraint;
-    self.leftViewContainerRevealWidth  = kJVDefaultViewContainerWidth;
+    self.leftViewContainerRevealWidth = kJVDefaultViewContainerRevealWidth;
 }
 
 - (void)setupRightViewContainer {
@@ -85,21 +75,18 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self.rightViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.rightViewContainer];
     
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual
-                                                                           toItem:self.centerViewContainer attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    NSArray *constraints = @[
+        [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
+        widthConstraint
+    ];
     
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual
-                                                                          toItem:self.centerViewContainer attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
-    
-    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual
-                                                                            toItem:self.centerViewContainer attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0];
-    
-    [self addConstraint:heightConstraint];
-    [self addConstraint:widthConstraint];
-    [self addConstraint:leadingConstraint];
+    [self addConstraints:constraints];
     
     self.rightViewContainerWidthConstraint = widthConstraint;
-    self.rightViewContainerRevealWidth = kJVDefaultViewContainerWidth;
+    self.rightViewContainerRevealWidth = kJVDefaultViewContainerRevealWidth;
 }
 
 - (void)setupCenterViewContainer {
@@ -108,17 +95,10 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
     [self addSubview:self.centerViewContainer];
     
     NSArray *constraints = @[
-        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
-                             
-        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
-                             
-        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
-                             
-        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual
-                                        toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0],
+        [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0],
     ];
     
     [self addConstraints:constraints];
@@ -127,11 +107,11 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 #pragma mark - Reveal Widths
 
 - (void)setLeftViewContainerRevealWidth:(CGFloat)leftViewContainerRevealWidth {
-    self.leftViewContainerWidthConstraint.constant = leftViewContainerRevealWidth;
+    self.leftViewContainerWidthConstraint.constant = -leftViewContainerRevealWidth;
 }
 
 - (void)setRightViewContainerRevealWidth:(CGFloat)rightViewContainerRevealWidth {
-    self.rightViewContainerWidthConstraint.constant = rightViewContainerRevealWidth;
+    self.rightViewContainerWidthConstraint.constant = -rightViewContainerRevealWidth;
 }
 
 - (CGFloat)leftViewContainerRevealWidth {
@@ -140,6 +120,18 @@ static const CGFloat kJVDefaultViewContainerWidth = 80.0;
 
 - (CGFloat)rightViewContainerRevealWidth {
     return self.rightViewContainerWidthConstraint.constant;
+}
+
+#pragma mark - Helpers
+
+- (UIView *)viewContainerForDrawerSide:(JVFloatingDrawerSide)drawerSide {
+    UIView *viewContainer = nil;
+    switch (drawerSide) {
+        case JVFloatingDrawerSideLeft: viewContainer = self.leftViewContainer; break;
+        case JVFloatingDrawerSideRight: viewContainer = self.rightViewContainer; break;
+        case JVFloatingDrawerSideNone: viewContainer = nil; break;
+    }
+    return viewContainer;
 }
 
 #pragma mark - Layout

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JVFloatingDrawerViewController.h"
 
 @interface JVFloatingDrawerView : UIView
 
@@ -18,5 +19,7 @@
 
 @property (nonatomic, assign) CGFloat leftViewContainerRevealWidth;
 @property (nonatomic, assign) CGFloat rightViewContainerRevealWidth;
+
+- (UIView *)viewContainerForDrawerSide:(JVFloatingDrawerSide)drawerSide;
 
 @end

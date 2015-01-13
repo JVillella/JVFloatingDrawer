@@ -13,18 +13,14 @@
 
 @protocol JVFloatingDrawerAnimation <NSObject>
 
-- (NSTimeInterval)animationDurationForFloatingDrawer:(JVFloatingDrawerViewController *)drawer;
-
 /**
  *  Implementations should animate the sideViewController into view.
  *
  *  @param sideViewController   The view controller being presented
  *  @param centerViewController The view controller to move out of the way.
  */
-- (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide
-                   sideViewController:(UIViewController *)sideViewController
-                 centerViewController:(UIViewController *)centerViewController
-                           completion:(void(^)(BOOL finished))completion;
+- (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
+                           centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
 
 /**
  *  Implementations should animate the sideViewController being dismissed.
@@ -32,10 +28,8 @@
  *  @param sideViewController   The view controller being dismissed
  *  @param centerViewController The view controller the should be moved back into place
  */
-- (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide
-              sideViewController:(UIViewController *)sideViewController
-            centerViewController:(UIViewController *)centerViewController
-                      completion:(void(^)(BOOL finished))completion;
+- (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
+                      centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
 
 @end
 
