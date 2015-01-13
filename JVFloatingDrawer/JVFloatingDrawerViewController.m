@@ -10,16 +10,13 @@
 #import "JVFloatingDrawerView.h"
 #import "JVFloatingDrawerAnimation.h"
 
-//static NSString * const kJVCenterViewContainerShadowLayerName = @"Shadow";
-static const CGFloat kJVCenterViewContainerCornerRadius = 5.0;
-
 NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     const char* c_str = 0;
 #define PROCESS_VAL(p) case(p): c_str = #p; break;
     switch(side) {
-            PROCESS_VAL(JVFloatingDrawerSideNone);
-            PROCESS_VAL(JVFloatingDrawerSideLeft);
-            PROCESS_VAL(JVFloatingDrawerSideRight);
+        PROCESS_VAL(JVFloatingDrawerSideNone);
+        PROCESS_VAL(JVFloatingDrawerSideLeft);
+        PROCESS_VAL(JVFloatingDrawerSideRight);
     }
 #undef PROCESS_VAL
     
@@ -31,6 +28,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 @property (nonatomic, strong, readonly) JVFloatingDrawerView *drawerView;
 @property (nonatomic, assign) JVFloatingDrawerSide currentlyOpenedSide;
 @property (nonatomic, strong) UITapGestureRecognizer *toggleDrawerTapGestureRecognizer;
+
+
 
 @end
 
@@ -74,8 +73,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 #warning Implement animated flag - doesn't acknowledge it currently
 
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-//    NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
-    
     if(self.currentlyOpenedSide != drawerSide) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
         UIView *centerView = self.drawerView.centerViewContainer;
@@ -90,17 +87,13 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         }
         
         [self addDrawerGestures];
-        
-        [self applyBorderRadiusToCenterViewController];
-        [self applyShadowToCenterViewContainer];
+        [self.drawerView willOpenFloatingDrawerViewController:self];
     }
     
     self.currentlyOpenedSide = drawerSide;
 }
 
 - (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-//    NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
-    
     if(self.currentlyOpenedSide == drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
         UIView *centerView = self.drawerView.centerViewContainer;
@@ -111,8 +104,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         [self restoreGestures];
         
-        [self removeBorderRadiusFromCenterViewController];
-        [self removeShadowFromCenterViewContainer];
+        [self.drawerView willCloseFloatingDrawerViewController:self];
     }
 }
 
@@ -143,66 +135,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 - (void)actionCenterViewContainerTapped:(id)sender {
     [self closeDrawerWithSide:self.currentlyOpenedSide animated:YES completion:nil];
 }
-
-
-////////////////// REFACTOR ME //////////////////
-
-// Notice, border is applied to centerViewController.view whereas shadow is applied to
-// drawerView.centerViewContainer. This is because cornerRadius requires masksToBounds = YES
-// but for shadows to render outside the view, masksToBounds must be NO. So we apply them on
-// different views.
-
-- (void)applyBorderRadiusToCenterViewController {
-    CALayer *centerLayer = self.centerViewController.view.layer;
-    centerLayer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
-    centerLayer.borderWidth = 1.0;
-    centerLayer.cornerRadius = kJVCenterViewContainerCornerRadius;
-    centerLayer.masksToBounds = YES;
-}
-
-- (void)removeBorderRadiusFromCenterViewController {
-    CALayer *centerLayer = self.centerViewController.view.layer;
-    centerLayer.borderColor = [UIColor clearColor].CGColor;
-    centerLayer.borderWidth = 0.0;
-    centerLayer.cornerRadius = 0.0;
-    centerLayer.masksToBounds = NO;
-}
-
-- (void)applyShadowToCenterViewContainer {
-    CALayer *layer = self.drawerView.centerViewContainer.layer;
-//    CALayer *layer = [CALayer layer];
-    layer.shadowRadius  = 20.0;
-    
-    CGFloat increase = layer.shadowRadius;
-    CGRect centerViewContainerRect = self.drawerView.centerViewContainer.bounds;
-    centerViewContainerRect.origin.x -= increase;
-    centerViewContainerRect.origin.y -= increase;
-    centerViewContainerRect.size.width  += 2.0 * increase;
-    centerViewContainerRect.size.height += 2.0 * increase;
-    
-    layer.shadowPath    = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
-    layer.shadowColor   = [UIColor blackColor].CGColor;
-    layer.shadowOpacity = 0.4;
-    layer.shadowOffset  = CGSizeMake(0.0, 0.0);
-    layer.masksToBounds = NO;
-    
-    // TODO Move this out, not just related to shadows in specific, but that is why we are using it.
-//    self.view.layer.shouldRasterize = YES;
-//    self.view.layer.rasterizationScale = [UIScreen mainScreen].scale;
-}
-
-- (void)removeShadowFromCenterViewContainer {
-    CALayer *layer = self.drawerView.centerViewContainer.layer;
-    layer.shadowRadius  = 0.0;
-    layer.shadowOpacity = 0.0;
-    
-// TODO Move this out, not just related to shadows in specific, but that is why we are using it.
-//    self.view.layer.shouldRasterize = NO;
-}
-
-////////////////// REFACTOR ME //////////////////
-
-
 
 #pragma mark - Managed View Controllers
 

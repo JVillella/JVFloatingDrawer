@@ -8,6 +8,8 @@
 
 #import "JVFloatingDrawerView.h"
 
+static const CGFloat kJVCenterViewContainerCornerRadius = 5.0;
+
 static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 @interface JVFloatingDrawerView ()
@@ -136,14 +138,68 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     return viewContainer;
 }
 
-#pragma mark - Layout
+#pragma mark - Open/Close Events
 
-//+ (BOOL)requiresConstraintBasedLayout {
-//    return YES;
-//}
-//
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//}
+- (void)willOpenFloatingDrawerViewController:(JVFloatingDrawerViewController *)viewController {
+    [self applyBorderRadiusToCenterViewController];
+    [self applyShadowToCenterViewContainer];
+}
+
+- (void)willCloseFloatingDrawerViewController:(JVFloatingDrawerViewController *)viewController {
+    [self removeBorderRadiusFromCenterViewController];
+    [self removeShadowFromCenterViewContainer];
+}
+
+#pragma mark - View Related
+
+// Notice, border is applied to centerViewController.view whereas shadow is applied to
+// drawerView.centerViewContainer. This is because cornerRadius requires masksToBounds = YES
+// but for shadows to render outside the view, masksToBounds must be NO. So we apply them on
+// different views.
+- (void)applyBorderRadiusToCenterViewController {
+    // FIXME: Safe? Maybe move this into a property
+    UIView *containerCenterView = [self.centerViewContainer.subviews firstObject];
+    
+    CALayer *centerLayer = containerCenterView.layer;
+    centerLayer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    centerLayer.borderWidth = 1.0;
+    centerLayer.cornerRadius = kJVCenterViewContainerCornerRadius;
+    centerLayer.masksToBounds = YES;
+}
+
+- (void)removeBorderRadiusFromCenterViewController {
+    // FIXME: Safe? Maybe move this into a property
+    UIView *containerCenterView = [self.centerViewContainer.subviews firstObject];
+    
+    CALayer *centerLayer = containerCenterView.layer;
+    centerLayer.borderColor = [UIColor clearColor].CGColor;
+    centerLayer.borderWidth = 0.0;
+    centerLayer.cornerRadius = 0.0;
+    centerLayer.masksToBounds = NO;
+}
+
+- (void)applyShadowToCenterViewContainer {
+    CALayer *layer = self.centerViewContainer.layer;
+    layer.shadowRadius  = 20.0;
+    
+    CGFloat increase = layer.shadowRadius;
+    CGRect centerViewContainerRect = self.centerViewContainer.bounds;
+    centerViewContainerRect.origin.x -= increase;
+    centerViewContainerRect.origin.y -= increase;
+    centerViewContainerRect.size.width  += 2.0 * increase;
+    centerViewContainerRect.size.height += 2.0 * increase;
+    
+    layer.shadowPath    = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
+    layer.shadowColor   = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.4;
+    layer.shadowOffset  = CGSizeMake(0.0, 0.0);
+    layer.masksToBounds = NO;
+}
+
+- (void)removeShadowFromCenterViewContainer {
+    CALayer *layer = self.centerViewContainer.layer;
+    layer.shadowRadius  = 0.0;
+    layer.shadowOpacity = 0.0;
+}
 
 @end
