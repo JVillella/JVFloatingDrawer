@@ -27,6 +27,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 @property (nonatomic, strong, readonly) JVFloatingDrawerView *drawerView;
 @property (nonatomic, assign) JVFloatingDrawerSide currentlyOpenedSide;
+@property (nonatomic, strong) UITapGestureRecognizer *toggleDrawerTapGestureRecognizer;
 
 @end
 
@@ -84,6 +85,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         } else {
             [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
         }
+        
+        [self addDrawerGestures];
     }
     
     self.currentlyOpenedSide = drawerSide;
@@ -97,9 +100,11 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         UIView *centerView = self.drawerView.centerViewContainer;
         
         [self.animator dismissAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+        
+        self.currentlyOpenedSide = JVFloatingDrawerSideNone;
+        
+        [self restoreGestures];
     }
-    
-    self.currentlyOpenedSide = JVFloatingDrawerSideNone;
 }
 
 - (void)toggleDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
@@ -109,8 +114,25 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         } else {
             [self openDrawerWithSide:drawerSide animated:animated completion:completion];
         }
-        
     }
+}
+
+#pragma mark - Gestures
+
+- (void)addDrawerGestures {
+    self.centerViewController.view.userInteractionEnabled = NO;
+    self.toggleDrawerTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionCenterViewContainerTapped:)];
+    [self.drawerView.centerViewContainer addGestureRecognizer:self.toggleDrawerTapGestureRecognizer];
+}
+
+- (void)restoreGestures {
+    [self.drawerView.centerViewContainer removeGestureRecognizer:self.toggleDrawerTapGestureRecognizer];
+    self.toggleDrawerTapGestureRecognizer = nil;
+    self.centerViewController.view.userInteractionEnabled = YES;    
+}
+
+- (void)actionCenterViewContainerTapped:(id)sender {
+    [self closeDrawerWithSide:self.currentlyOpenedSide animated:YES completion:nil];
 }
 
 #pragma mark - Managed View Controllers
@@ -144,9 +166,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     
     [self addChildViewController:destinationViewController];
     [container addSubview:destinationViewController.view];
-
-//    destinationViewController.view.frame = container.frame;
-    
+   
     UIView *destinationView = destinationViewController.view;
     destinationView.translatesAutoresizingMaskIntoConstraints = NO;
     
