@@ -71,7 +71,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 #warning Implement animated flag - doesn't acknowledge it currently
 
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-    NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
+//    NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
     
     if(self.currentlyOpenedSide != drawerSide) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
@@ -87,13 +87,16 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         }
         
         [self addDrawerGestures];
+        
+        [self applyBorderRadiusToCenterViewContainer];
+        [self applyShadowToCenterViewContainer];
     }
     
     self.currentlyOpenedSide = drawerSide;
 }
 
 - (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-    NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
+//    NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
     
     if(self.currentlyOpenedSide == drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
@@ -104,6 +107,9 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         self.currentlyOpenedSide = JVFloatingDrawerSideNone;
         
         [self restoreGestures];
+        
+        [self removeBorderRadiusFromCenterViewContainer];
+        [self removeShadowFromCenterViewContainer];
     }
 }
 
@@ -134,6 +140,29 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 - (void)actionCenterViewContainerTapped:(id)sender {
     [self closeDrawerWithSide:self.currentlyOpenedSide animated:YES completion:nil];
 }
+
+
+////////////////// REFACTOR ME //////////////////
+
+- (void)applyBorderRadiusToCenterViewContainer {
+
+}
+
+- (void)removeBorderRadiusFromCenterViewContainer {
+
+}
+
+- (void)applyShadowToCenterViewContainer {
+    
+}
+
+- (void)removeShadowFromCenterViewContainer {
+    
+}
+
+////////////////// REFACTOR ME //////////////////
+
+
 
 #pragma mark - Managed View Controllers
 
