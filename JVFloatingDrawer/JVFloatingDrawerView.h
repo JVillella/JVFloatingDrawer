@@ -22,4 +22,7 @@
 
 - (UIView *)viewContainerForDrawerSide:(JVFloatingDrawerSide)drawerSide;
 
+- (void)willOpenFloatingDrawerViewController:(JVFloatingDrawerViewController *)viewController;
+- (void)willCloseFloatingDrawerViewController:(JVFloatingDrawerViewController *)viewController;
+
 @end

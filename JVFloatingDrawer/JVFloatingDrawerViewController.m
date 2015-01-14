@@ -14,9 +14,9 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     const char* c_str = 0;
 #define PROCESS_VAL(p) case(p): c_str = #p; break;
     switch(side) {
-            PROCESS_VAL(JVFloatingDrawerSideNone);
-            PROCESS_VAL(JVFloatingDrawerSideLeft);
-            PROCESS_VAL(JVFloatingDrawerSideRight);
+        PROCESS_VAL(JVFloatingDrawerSideNone);
+        PROCESS_VAL(JVFloatingDrawerSideLeft);
+        PROCESS_VAL(JVFloatingDrawerSideRight);
     }
 #undef PROCESS_VAL
     
@@ -28,6 +28,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 @property (nonatomic, strong, readonly) JVFloatingDrawerView *drawerView;
 @property (nonatomic, assign) JVFloatingDrawerSide currentlyOpenedSide;
 @property (nonatomic, strong) UITapGestureRecognizer *toggleDrawerTapGestureRecognizer;
+
+
 
 @end
 
@@ -71,8 +73,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 #warning Implement animated flag - doesn't acknowledge it currently
 
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-    NSLog(@"Opening %@", JVFloatingDrawerSideString(drawerSide));
-    
     if(self.currentlyOpenedSide != drawerSide) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
         UIView *centerView = self.drawerView.centerViewContainer;
@@ -87,14 +87,13 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         }
         
         [self addDrawerGestures];
+        [self.drawerView willOpenFloatingDrawerViewController:self];
     }
     
     self.currentlyOpenedSide = drawerSide;
 }
 
 - (void)closeDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
-    NSLog(@"Closing %@", JVFloatingDrawerSideString(drawerSide));
-    
     if(self.currentlyOpenedSide == drawerSide && self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
         UIView *centerView = self.drawerView.centerViewContainer;
@@ -104,6 +103,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         self.currentlyOpenedSide = JVFloatingDrawerSideNone;
         
         [self restoreGestures];
+        
+        [self.drawerView willCloseFloatingDrawerViewController:self];
     }
 }
 
