@@ -29,8 +29,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 @property (nonatomic, assign) JVFloatingDrawerSide currentlyOpenedSide;
 @property (nonatomic, strong) UITapGestureRecognizer *toggleDrawerTapGestureRecognizer;
 
-
-
 @end
 
 @implementation JVFloatingDrawerViewController
@@ -216,6 +214,42 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         case JVFloatingDrawerSideNone: sideViewController = nil; break;
     }
     return sideViewController;
+}
+
+#pragma mark - Orientation
+
+- (BOOL)shouldAutorotate {
+    return [self.centerViewController shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [self.centerViewController supportedInterfaceOrientations];;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.centerViewController preferredInterfaceOrientationForPresentation];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if(self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
+        UIView *sideView   = [self.drawerView viewContainerForDrawerSide:self.currentlyOpenedSide];
+        UIView *centerView = self.drawerView.centerViewContainer;
+        
+        [self.animator willRotateOpenDrawerWithOpenSide:self.currentlyOpenedSide sideView:sideView centerView:centerView];
+    }
+    
+    [self.centerViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if(self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
+        UIView *sideView   = [self.drawerView viewContainerForDrawerSide:self.currentlyOpenedSide];
+        UIView *centerView = self.drawerView.centerViewContainer;
+        
+        [self.animator didRotateOpenDrawerWithOpenSide:self.currentlyOpenedSide sideView:sideView centerView:centerView];
+    }
+    
+    [self.centerViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 #pragma mark - Memory

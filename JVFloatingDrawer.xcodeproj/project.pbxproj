@@ -97,9 +97,9 @@
 				2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */,
 				2CE7E68F1A63558E0072121A /* JVFloatingDrawerView.h */,
 				2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */,
+				2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */,
 				2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */,
 				2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */,
-				2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */,
 				2CE7E66A1A62D8470072121A /* Drawers.storyboard */,
 				2CE7E66D1A62D8470072121A /* Images.xcassets */,
 				2CE7E69E1A636CBD0072121A /* JVCenterViewController.h */,
@@ -366,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JVFloatingDrawer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -376,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = JVFloatingDrawer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
