@@ -218,6 +218,30 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     return sideViewController;
 }
 
+#pragma mark - Orientation
+
+#warning Properly handle container view controllers
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    
+}
+
 #pragma mark - Memory
 
 - (void)didReceiveMemoryWarning {
