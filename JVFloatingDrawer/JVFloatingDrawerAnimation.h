@@ -31,6 +31,7 @@
 - (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                       centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
 
+@optional
 /**
  *  Invoked before a rotation begins with the drawer open. Implementations should
  *  do whatever drawer handling is necessary to maintain the drawer's appearance.
@@ -38,10 +39,8 @@
  *  @param drawerSide The open side of the drawer
  *  @param sideView   The containing side view that is open
  *  @param centerView The containing center view
- *  @param completion An optional completion block
  */
-- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                              centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
+- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView;
 
 /**
  *  Invoked after a rotation is finished with the drawer open. Implementations should
@@ -50,10 +49,8 @@
  *  @param drawerSide The open side of the drawer
  *  @param sideView   The containing side view that is open
  *  @param centerView The containing center view
- *  @param completion An optional completion block
  */
-- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                             centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
+- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView;
 
 @end
 

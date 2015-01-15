@@ -40,5 +40,4 @@ static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JV
     [[AppDelegate globalDelegate] toggleRightDrawer:self];
 }
 
-
 @end

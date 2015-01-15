@@ -8,6 +8,8 @@
 
 #import "JVFloatingDrawerSpringAnimator.h"
 
+static const CGFloat kJVCenterViewDestinationScale = 0.7;
+
 @implementation JVFloatingDrawerSpringAnimator
 
 #pragma mark - Initialization
@@ -32,22 +34,13 @@
 - (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                            centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
     
-    [self setAnchorPoint:CGPointMake(drawerSide == JVFloatingDrawerSideLeft ? 0.0 : 1.0, 0.5) forView:centerView];
+//    [self setAnchorPoint:CGPointMake(drawerSide == JVFloatingDrawerSideLeft ? 0.0 : 1.0, 0.5) forView:centerView];
 
     void (^springAnimation)() = ^{
-        CGFloat direction = drawerSide == JVFloatingDrawerSideLeft ? 1.0 : -1.0;
-        CGFloat centerVCHorizontalOffset = direction * sideView.frame.size.width;
-        
-        CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(centerVCHorizontalOffset, 0.0);
-        
-        sideView.transform = translateTransform;
-        centerView.transform = CGAffineTransformScale(centerView.transform, 0.7, 0.7);
-        centerView.transform = CGAffineTransformConcat(centerView.transform, translateTransform);
+        [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
     
-    void (^animationCompletion)(BOOL finished) = ^(BOOL finished) {
-        
-    };
+    void (^animationCompletion)(BOOL finished) = ^(BOOL finished) {};
     
     [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
          usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
@@ -58,14 +51,38 @@
 - (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                       centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
     void (^springAnimation)() = ^{
-        sideView.transform = CGAffineTransformIdentity;
-        centerView.transform = CGAffineTransformIdentity;
+        [self removeTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
     
     [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
          usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
                         options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
                      completion:completion];
+}
+
+/**
+ *  Applies transform to drawer. Note: Call -setAnchorPoint:forView: first to
+ *  properly setup anchor points before transformation.
+ *
+ *  @param drawerSide The side of the drawer that is opening
+ *  @param sideView   The view of the side of the drawer that is opening
+ *  @param centerView The center view
+ */
+- (void)applyTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+    CGFloat direction = drawerSide == JVFloatingDrawerSideLeft ? 1.0 : -1.0;
+    CGFloat centerVCHorizontalOffset = direction * sideView.frame.size.width;
+    
+    CGAffineTransform translate = CGAffineTransformMakeTranslation(centerVCHorizontalOffset, 0.0);
+    CGAffineTransform scale = CGAffineTransformMakeScale(kJVCenterViewDestinationScale, kJVCenterViewDestinationScale);
+    
+    sideView.transform = translate;
+    centerView.transform = translate;
+//    centerView.transform = CGAffineTransformConcat(scale, translate);
+}
+
+- (void)removeTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+    sideView.transform = CGAffineTransformIdentity;
+    centerView.transform = CGAffineTransformIdentity;
 }
 
 #pragma mark - Helpers
@@ -90,6 +107,14 @@
     
     view.layer.position = position;
     view.layer.anchorPoint = anchorPoint;
+}
+
+- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+}
+
+- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+//    [self setAnchorPoint:CGPointMake(drawerSide == JVFloatingDrawerSideLeft ? 0.0 : 1.0, 0.5) forView:centerView];
+    [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
 }
 
 @end
