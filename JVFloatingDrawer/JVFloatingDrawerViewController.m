@@ -178,20 +178,20 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 #pragma mark - Reveal Widths
 
-- (void)setLeftDrawerRevealWidth:(CGFloat)leftDrawerRevealWidth {
-    self.drawerView.leftViewContainerRevealWidth = leftDrawerRevealWidth;
+- (void)setLeftDrawerWidth:(CGFloat)leftDrawerWidth {
+    self.drawerView.leftViewContainerWidth = leftDrawerWidth;
 }
 
-- (void)setRightDrawerRevealWidth:(CGFloat)rightDrawerRevealWidth {
-    self.drawerView.rightViewContainerRevealWidth = rightDrawerRevealWidth;
+- (void)setRightDrawerWidth:(CGFloat)rightDrawerWidth {
+    self.drawerView.rightViewContainerWidth = rightDrawerWidth;
 }
 
 - (CGFloat)leftDrawerRevealWidth {
-    return self.drawerView.leftViewContainerRevealWidth;
+    return self.drawerView.leftViewContainerWidth;
 }
 
 - (CGFloat)rightDrawerRevealWidth {
-    return self.drawerView.rightViewContainerRevealWidth;
+    return self.drawerView.rightViewContainerWidth;
 }
 
 #pragma mark - Background Image

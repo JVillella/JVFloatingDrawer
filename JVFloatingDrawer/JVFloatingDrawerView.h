@@ -17,8 +17,8 @@
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
-@property (nonatomic, assign) CGFloat leftViewContainerRevealWidth;
-@property (nonatomic, assign) CGFloat rightViewContainerRevealWidth;
+@property (nonatomic, assign) CGFloat leftViewContainerWidth;
+@property (nonatomic, assign) CGFloat rightViewContainerWidth;de
 
 - (UIView *)viewContainerForDrawerSide:(JVFloatingDrawerSide)drawerSide;
 
