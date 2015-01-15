@@ -29,65 +29,70 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
     self.initialSpringVelocity = 3.0;
     self.springDamping = 2.0;
 }
+
+#pragma mark - Animator Implementations
+
+#pragma mark Presentation/Dismissal
     
-// TODO Split transformation math into methods. This is not clean code!
-- (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                           centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
-    
+- (void)presentationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView animated:(BOOL)animated completion:(void (^)(BOOL))completion {
     void (^springAnimation)() = ^{
         [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
     
-    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
-         usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
-                        options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
-                     completion:completion];
+    if (animated) {
+        [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
+             usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
+                            options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
+                         completion:nil];
+    } else {
+        springAnimation(); // Call spring animation block without animating
+    }
 }
 
-- (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                      centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
-    
+- (void)dismissWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView animated:(BOOL)animated completion:(void (^)(BOOL))completion {
     void (^springAnimation)() = ^{
         [self removeTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
     
-    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
-         usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
-                        options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
-                     completion:completion];
+    if (animated) {
+        [UIView animateWithDuration:self.animationDuration
+                              delay:self.animationDelay
+             usingSpringWithDamping:self.springDamping
+              initialSpringVelocity:self.initialSpringVelocity
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:springAnimation completion:completion];
+    } else {
+        springAnimation(); // Call spring animation block without animating
+    }
 }
 
-/**
- *  Applies transform to drawer. Note: Call -setAnchorPoint:forView: first to
- *  properly setup anchor points before transformation.
- *
- *  @param drawerSide The side of the drawer that is opening
- *  @param sideView   The view of the side of the drawer that is opening
- *  @param centerView The center view
- */
-- (void)applyTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
-    CGFloat direction = drawerSide == JVFloatingDrawerSideLeft ? 1.0 : -1.0;
-    CGFloat sideWidth = sideView.bounds.size.width;
-    CGFloat centerWidth = centerView.bounds.size.width;
-    CGFloat centerViewHorizontalOffset = direction * sideWidth;
-    CGFloat scaledCenterViewHorizontalOffset = direction * (sideWidth - (centerWidth - kJVCenterViewDestinationScale * centerWidth) / 2.0);
+#pragma mark Orientation
+
+- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {}
+
+- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+    void (^springAnimation)() = ^{
+        [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
+    };
     
-    CGAffineTransform sideTranslate = CGAffineTransformMakeTranslation(centerViewHorizontalOffset, 0.0);
-    sideView.transform = sideTranslate;
-
-
-    CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(scaledCenterViewHorizontalOffset, 0.0);
-    CGAffineTransform centerScale = CGAffineTransformMakeScale(kJVCenterViewDestinationScale, kJVCenterViewDestinationScale);
-    centerView.transform = CGAffineTransformConcat(centerScale, centerTranslate);
-}
-
-- (void)removeTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
-    sideView.transform = CGAffineTransformIdentity;
-    centerView.transform = CGAffineTransformIdentity;
+    [UIView animateWithDuration:self.animationDuration
+                          delay:self.animationDelay
+         usingSpringWithDamping:self.springDamping
+          initialSpringVelocity:self.initialSpringVelocity
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:springAnimation
+                     completion:nil];
 }
 
 #pragma mark - Helpers
 
+/**
+ *  Move a view layer's anchor point and adjust the position so as to not move the layer. Be careful
+ *  in using this. It has some side effects with orientation changes that need to be handled.
+ *
+ *  @param anchorPoint The anchor point being moved
+ *  @param view        The view of who's anchor point is being moved
+ */
 - (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view {
     CGPoint newPoint = CGPointMake(view.bounds.size.width  * anchorPoint.x,
                                    view.bounds.size.height * anchorPoint.y);
@@ -110,18 +115,27 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
     view.layer.anchorPoint = anchorPoint;
 }
 
-- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {}
+#pragma mark Transforms
 
-- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
-
-    void (^springAnimation)() = ^{
-        [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
-    };
+- (void)applyTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+    CGFloat direction = drawerSide == JVFloatingDrawerSideLeft ? 1.0 : -1.0;
+    CGFloat sideWidth = sideView.bounds.size.width;
+    CGFloat centerWidth = centerView.bounds.size.width;
+    CGFloat centerViewHorizontalOffset = direction * sideWidth;
+    CGFloat scaledCenterViewHorizontalOffset = direction * (sideWidth - (centerWidth - kJVCenterViewDestinationScale * centerWidth) / 2.0);
     
-    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
-         usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
-                        options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
-                     completion:nil];
+    CGAffineTransform sideTranslate = CGAffineTransformMakeTranslation(centerViewHorizontalOffset, 0.0);
+    sideView.transform = sideTranslate;
+    
+    
+    CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(scaledCenterViewHorizontalOffset, 0.0);
+    CGAffineTransform centerScale = CGAffineTransformMakeScale(kJVCenterViewDestinationScale, kJVCenterViewDestinationScale);
+    centerView.transform = CGAffineTransformConcat(centerScale, centerTranslate);
+}
+
+- (void)removeTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
+    sideView.transform = CGAffineTransformIdentity;
+    centerView.transform = CGAffineTransformIdentity;
 }
 
 @end

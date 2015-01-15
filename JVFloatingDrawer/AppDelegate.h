@@ -14,8 +14,8 @@
 
 + (AppDelegate *)globalDelegate;
 
-- (void)toggleLeftDrawer:(id)sender;
-- (void)toggleRightDrawer:(id)sender;
+- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated;
+- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated;
 
 @end
 

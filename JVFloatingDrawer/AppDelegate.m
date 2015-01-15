@@ -122,12 +122,12 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
     return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
-- (void)toggleLeftDrawer:(id)sender {
-    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:YES completion:nil];
+- (void)toggleLeftDrawer:(id)sender animated:(BOOL)animated {
+    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
 }
 
-- (void)toggleRightDrawer:(id)sender {
-    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:YES completion:nil];
+- (void)toggleRightDrawer:(id)sender animated:(BOOL)animated {
+    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideRight animated:animated completion:nil];
 }
 
 @end

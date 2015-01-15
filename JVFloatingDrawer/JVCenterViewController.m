@@ -33,11 +33,11 @@ static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JV
 #pragma mark - Actions
 
 - (IBAction)actionToggleLeftDrawer:(id)sender {
-    [[AppDelegate globalDelegate] toggleLeftDrawer:self];
+    [[AppDelegate globalDelegate] toggleLeftDrawer:self animated:YES];
 }
 
 - (IBAction)actionToggleRightDrawer:(id)sender {
-    [[AppDelegate globalDelegate] toggleRightDrawer:self];
+    [[AppDelegate globalDelegate] toggleRightDrawer:self animated:YES];
 }
 
 @end
