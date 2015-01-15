@@ -27,9 +27,8 @@
     self.initialSpringVelocity = 3.0;
     self.springDamping = 2.0;
 }
-
+    
 // TODO Split transformation math into methods. This is not clean code!
-
 - (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                            centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
     

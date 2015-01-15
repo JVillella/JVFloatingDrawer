@@ -42,6 +42,8 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 - (void)setupBackgroundImageView {
     _backgroundImageView = [[UIImageView alloc] init];
+    
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.backgroundImageView];
     
@@ -57,6 +59,7 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 - (void)setupLeftViewContainer {
     _leftViewContainer = [[UIView alloc] init];
+    
     [self.leftViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.leftViewContainer];
     
@@ -76,6 +79,7 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 - (void)setupRightViewContainer {
     _rightViewContainer = [[UIView alloc] init];
+    
     [self.rightViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.rightViewContainer];
     
