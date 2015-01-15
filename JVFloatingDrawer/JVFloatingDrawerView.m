@@ -63,7 +63,7 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     [self.leftViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.leftViewContainer];
     
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.centerViewContainer attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0],
         [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.centerViewContainer attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
@@ -99,9 +99,10 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 - (void)setupCenterViewContainer {
     _centerViewContainer = [[UIView alloc] init];
+    
     [self.centerViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.centerViewContainer];
-    
+
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
         [NSLayoutConstraint constraintWithItem:self.centerViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
@@ -165,7 +166,7 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     UIView *containerCenterView = [self.centerViewContainer.subviews firstObject];
     
     CALayer *centerLayer = containerCenterView.layer;
-    centerLayer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
+    centerLayer.borderColor = [UIColor colorWithWhite:1.0 alpha:0.15].CGColor;
     centerLayer.borderWidth = 1.0;
     centerLayer.cornerRadius = kJVCenterViewContainerCornerRadius;
     centerLayer.masksToBounds = YES;
@@ -185,6 +186,22 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 - (void)applyShadowToCenterViewContainer {
     CALayer *layer = self.centerViewContainer.layer;
     layer.shadowRadius  = 20.0;
+    layer.shadowColor   = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.4;
+    layer.shadowOffset  = CGSizeMake(0.0, 0.0);
+    layer.masksToBounds = NO;
+    
+    [self updateShadowPath];
+}
+
+- (void)removeShadowFromCenterViewContainer {
+    CALayer *layer = self.centerViewContainer.layer;
+    layer.shadowRadius  = 0.0;
+    layer.shadowOpacity = 0.0;
+}
+
+- (void)updateShadowPath {
+    CALayer *layer = self.centerViewContainer.layer;
     
     CGFloat increase = layer.shadowRadius;
     CGRect centerViewContainerRect = self.centerViewContainer.bounds;
@@ -193,17 +210,13 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     centerViewContainerRect.size.width  += 2.0 * increase;
     centerViewContainerRect.size.height += 2.0 * increase;
     
-    layer.shadowPath    = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
-    layer.shadowColor   = [UIColor blackColor].CGColor;
-    layer.shadowOpacity = 0.4;
-    layer.shadowOffset  = CGSizeMake(0.0, 0.0);
-    layer.masksToBounds = NO;
+    layer.shadowPath = [[UIBezierPath bezierPathWithRoundedRect:centerViewContainerRect cornerRadius:kJVCenterViewContainerCornerRadius] CGPath];
 }
 
-- (void)removeShadowFromCenterViewContainer {
-    CALayer *layer = self.centerViewContainer.layer;
-    layer.shadowRadius  = 0.0;
-    layer.shadowOpacity = 0.0;
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self updateShadowPath];
 }
 
 @end
