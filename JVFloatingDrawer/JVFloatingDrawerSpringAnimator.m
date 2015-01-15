@@ -70,14 +70,18 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
  */
 - (void)applyTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
     CGFloat direction = drawerSide == JVFloatingDrawerSideLeft ? 1.0 : -1.0;
-    CGFloat centerVCHorizontalOffset = direction * sideView.frame.size.width;
+    CGFloat sideWidth = sideView.bounds.size.width;
+    CGFloat centerWidth = centerView.bounds.size.width;
+    CGFloat centerViewHorizontalOffset = direction * sideWidth;
+    CGFloat scaledCenterViewHorizontalOffset = direction * (sideWidth - (centerWidth - kJVCenterViewDestinationScale * centerWidth) / 2.0);
     
-    CGAffineTransform translate = CGAffineTransformMakeTranslation(centerVCHorizontalOffset, 0.0);
-    CGAffineTransform scale = CGAffineTransformMakeScale(kJVCenterViewDestinationScale, kJVCenterViewDestinationScale);
-    
-    sideView.transform = translate;
-    centerView.transform = translate;
-//    centerView.transform = CGAffineTransformConcat(scale, translate);
+    CGAffineTransform sideTranslate = CGAffineTransformMakeTranslation(centerViewHorizontalOffset, 0.0);
+    sideView.transform = sideTranslate;
+
+
+    CGAffineTransform centerTranslate = CGAffineTransformMakeTranslation(scaledCenterViewHorizontalOffset, 0.0);
+    CGAffineTransform centerScale = CGAffineTransformMakeScale(kJVCenterViewDestinationScale, kJVCenterViewDestinationScale);
+    centerView.transform = CGAffineTransformConcat(centerScale, centerTranslate);
 }
 
 - (void)removeTransformsWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
