@@ -34,22 +34,19 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
 - (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                            centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
     
-//    [self setAnchorPoint:CGPointMake(drawerSide == JVFloatingDrawerSideLeft ? 0.0 : 1.0, 0.5) forView:centerView];
-
     void (^springAnimation)() = ^{
         [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
     
-    void (^animationCompletion)(BOOL finished) = ^(BOOL finished) {};
-    
     [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
          usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
                         options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
-                     completion:animationCompletion];
+                     completion:completion];
 }
 
 - (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
                       centerView:(UIView *)centerView completion:(void (^)(BOOL))completion {
+    
     void (^springAnimation)() = ^{
         [self removeTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
     };
@@ -113,12 +110,18 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
     view.layer.anchorPoint = anchorPoint;
 }
 
-- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
-}
+- (void)willRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {}
 
 - (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView {
-//    [self setAnchorPoint:CGPointMake(drawerSide == JVFloatingDrawerSideLeft ? 0.0 : 1.0, 0.5) forView:centerView];
-    [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
+
+    void (^springAnimation)() = ^{
+        [self applyTransformsWithSide:drawerSide sideView:sideView centerView:centerView];
+    };
+    
+    [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
+         usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
+                        options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
+                     completion:nil];
 }
 
 @end
