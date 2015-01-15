@@ -68,8 +68,6 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 #pragma mark - Interaction
 
-#warning Implement animated flag - doesn't acknowledge it currently
-
 - (void)openDrawerWithSide:(JVFloatingDrawerSide)drawerSide animated:(BOOL)animated completion:(void(^)(BOOL finished))completion {
     if(self.currentlyOpenedSide != drawerSide) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
@@ -77,11 +75,11 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         // First close opened drawer and then open new drawer
         if(self.currentlyOpenedSide != JVFloatingDrawerSideNone) {
-            [self closeDrawerWithSide:self.currentlyOpenedSide animated:YES completion:^(BOOL finished) {
-                [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+            [self closeDrawerWithSide:self.currentlyOpenedSide animated:animated completion:^(BOOL finished) {
+                [self.animator presentationWithSide:drawerSide sideView:sideView centerView:centerView animated:animated completion:completion];
             }];
         } else {
-            [self.animator presentationAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+            [self.animator presentationWithSide:drawerSide sideView:sideView centerView:centerView animated:animated completion:completion];
         }
         
         [self addDrawerGestures];
@@ -96,7 +94,7 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         UIView *sideView   = [self.drawerView viewContainerForDrawerSide:drawerSide];
         UIView *centerView = self.drawerView.centerViewContainer;
         
-        [self.animator dismissAnimationWithSide:drawerSide sideView:sideView centerView:centerView completion:completion];
+        [self.animator dismissWithSide:drawerSide sideView:sideView centerView:centerView animated:animated completion:completion];
         
         self.currentlyOpenedSide = JVFloatingDrawerSideNone;
         

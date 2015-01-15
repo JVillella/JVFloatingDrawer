@@ -9,27 +9,32 @@
 #import <Foundation/Foundation.h>
 #import "JVFloatingDrawerViewController.h"
 
-@class UIViewController;
-
 @protocol JVFloatingDrawerAnimation <NSObject>
 
 /**
- *  Implementations should animate the sideViewController into view.
+ *  Implementations should present the side view.
  *
- *  @param sideView   The side view being presented
- *  @param centerView The center view to move out of the way
+ *  @param drawerSide The side of the drawer to be presented
+ *  @param sideView   The view of the side of the drawer to be presented
+ *  @param centerView The center view
+ *  @param animated   An animated flag indicating if the caller wants this presentation to be animated
+ *  @param completion A completion block to be called when the presentation is finished
  */
-- (void)presentationAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                           centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
+- (void)presentationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
+                  centerView:(UIView *)centerView animated:(BOOL)animated completion:(void(^)(BOOL finished))completion;
+
 
 /**
- *  Implementations should animate the sideViewController being dismissed.
+ *  Implementations should dismiss the open side view.
  *
- *  @param sideView   The containing side view being dismissed
- *  @param centerView The containing center view the should be moved back into place
+ *  @param drawerSide The side of the drawer to be dismissed
+ *  @param sideView   The view of the side of the drawer to be dismissed
+ *  @param centerView The center view
+ *  @param animated   An animated flag indicating if the caller wants this dismissal to be animated
+ *  @param completion A completion block to be called when the presentation is finished
  */
-- (void)dismissAnimationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
-                      centerView:(UIView *)centerView completion:(void(^)(BOOL finished))completion;
+- (void)dismissWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView
+             centerView:(UIView *)centerView animated:(BOOL)animated completion:(void(^)(BOOL finished))completion;
 
 @optional
 /**
