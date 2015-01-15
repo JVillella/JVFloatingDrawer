@@ -218,18 +218,16 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
 
 #pragma mark - Orientation
 
-#warning Properly handle container view controllers
-
 - (BOOL)shouldAutorotate {
-    return YES;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
+    return [self.centerViewController shouldAutorotate];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+    return [self.centerViewController supportedInterfaceOrientations];;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [self.centerViewController preferredInterfaceOrientationForPresentation];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -239,6 +237,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         [self.animator willRotateOpenDrawerWithOpenSide:self.currentlyOpenedSide sideView:sideView centerView:centerView];
     }
+    
+    [self.centerViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -248,6 +248,8 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
         
         [self.animator didRotateOpenDrawerWithOpenSide:self.currentlyOpenedSide sideView:sideView centerView:centerView];
     }
+    
+    [self.centerViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 #pragma mark - Memory
