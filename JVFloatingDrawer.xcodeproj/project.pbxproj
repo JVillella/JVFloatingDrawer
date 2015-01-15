@@ -16,7 +16,10 @@
 		2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6871A62E5A20072121A /* JVFloatingDrawerViewController.m */; };
 		2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */; };
 		2CE7E6911A63558E0072121A /* JVFloatingDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */; };
-		2CE7E6A01A636CBD0072121A /* JVCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E69F1A636CBD0072121A /* JVCenterViewController.m */; };
+		2CE7E6A01A636CBD0072121A /* JVGitHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */; };
+		B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */; };
+		B9E746E71A684DD700C5163E /* JVRightDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */; };
+		B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +51,14 @@
 		2CE7E68C1A62F6380072121A /* JVFloatingDrawerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerAnimation.h; sourceTree = "<group>"; };
 		2CE7E68F1A63558E0072121A /* JVFloatingDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerView.h; sourceTree = "<group>"; };
 		2CE7E6901A63558E0072121A /* JVFloatingDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerView.m; sourceTree = "<group>"; };
-		2CE7E69E1A636CBD0072121A /* JVCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVCenterViewController.h; sourceTree = "<group>"; };
-		2CE7E69F1A636CBD0072121A /* JVCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVCenterViewController.m; sourceTree = "<group>"; };
+		2CE7E69E1A636CBD0072121A /* JVGitHubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVGitHubViewController.h; sourceTree = "<group>"; };
+		2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVGitHubViewController.m; sourceTree = "<group>"; };
+		B9E746E21A684DC800C5163E /* JVLeftDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLeftDrawerTableViewController.h; sourceTree = "<group>"; };
+		B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLeftDrawerTableViewController.m; sourceTree = "<group>"; };
+		B9E746E51A684DD700C5163E /* JVRightDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVRightDrawerTableViewController.h; sourceTree = "<group>"; };
+		B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVRightDrawerTableViewController.m; sourceTree = "<group>"; };
+		B9E746E81A684E4000C5163E /* JVDrawerSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVDrawerSettingsTableViewController.h; sourceTree = "<group>"; };
+		B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVDrawerSettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +110,15 @@
 				2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */,
 				2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */,
 				2CE7E66A1A62D8470072121A /* Drawers.storyboard */,
+				B9E746E21A684DC800C5163E /* JVLeftDrawerTableViewController.h */,
+				B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */,
+				B9E746E51A684DD700C5163E /* JVRightDrawerTableViewController.h */,
+				B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */,
 				2CE7E66D1A62D8470072121A /* Images.xcassets */,
-				2CE7E69E1A636CBD0072121A /* JVCenterViewController.h */,
-				2CE7E69F1A636CBD0072121A /* JVCenterViewController.m */,
+				2CE7E69E1A636CBD0072121A /* JVGitHubViewController.h */,
+				B9E746E81A684E4000C5163E /* JVDrawerSettingsTableViewController.h */,
+				B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */,
+				2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */,
 				2CE7E66F1A62D8470072121A /* LaunchScreen.xib */,
 				2CE7E6601A62D8470072121A /* Supporting Files */,
 			);
@@ -239,9 +254,12 @@
 				2CE7E6661A62D8470072121A /* AppDelegate.m in Sources */,
 				2CE7E68B1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m in Sources */,
 				2CE7E6881A62E5A20072121A /* JVFloatingDrawerViewController.m in Sources */,
+				B9E746E71A684DD700C5163E /* JVRightDrawerTableViewController.m in Sources */,
+				B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
+				B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */,
 				2CE7E6911A63558E0072121A /* JVFloatingDrawerView.m in Sources */,
-				2CE7E6A01A636CBD0072121A /* JVCenterViewController.m in Sources */,
+				2CE7E6A01A636CBD0072121A /* JVGitHubViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

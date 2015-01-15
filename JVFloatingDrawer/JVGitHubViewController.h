@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JVCenterViewController : UIViewController
+@interface JVGitHubViewController : UIViewController
 
 @end

@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 JVillella. All rights reserved.
 //
 
-#import "JVCenterViewController.h"
+#import "JVGitHubViewController.h"
 #import "AppDelegate.h"
 
 static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JVFloatingDrawer";
 
-@interface JVCenterViewController ()
+@interface JVGitHubViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 
 @end
 
-@implementation JVCenterViewController
+@implementation JVGitHubViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

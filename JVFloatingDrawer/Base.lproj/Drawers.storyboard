@@ -2,34 +2,35 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Center View Controller-->
+        <!--(Center) GitHub Project Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Center View Controller" customClass="JVCenterViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="(Center) GitHub Project Page" customClass="JVGitHubViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TS6-Cz-beC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="TS6-Cz-beC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Fc3-tk-a4W"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TS6-Cz-beC" secondAttribute="bottom" id="bJb-fa-2zZ"/>
-                            <constraint firstItem="TS6-Cz-beC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hQW-Oh-THy"/>
-                            <constraint firstAttribute="trailing" secondItem="TS6-Cz-beC" secondAttribute="trailing" id="vVA-si-s21"/>
+                            <constraint firstAttribute="trailing" secondItem="TS6-Cz-beC" secondAttribute="trailing" id="GGm-ZL-ywZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TS6-Cz-beC" secondAttribute="bottom" id="dYP-Ai-QxO"/>
+                            <constraint firstItem="TS6-Cz-beC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="iUq-Wv-wZK"/>
+                            <constraint firstItem="TS6-Cz-beC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nby-Wp-Y3b"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Floating Drawer" id="vZ9-nj-igO">
+                    <navigationItem key="navigationItem" title="GitHub Project Page" id="vZ9-nj-igO">
                         <barButtonItem key="leftBarButtonItem" image="399-list1" id="x1a-WG-ZGa" userLabel="Left Drawer Toggle Button">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -51,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="189" y="361"/>
         </scene>
-        <!--Left Drawer View Controller-->
+        <!--(Left) Left Drawer-->
         <scene sceneID="xi4-yp-hfF">
             <objects>
-                <tableViewController storyboardIdentifier="JVLeftDrawerViewControllerStoryboardID" id="7ba-Zg-Ilc" userLabel="Left Drawer View Controller" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="JVLeftDrawerViewControllerStoryboardID" id="7ba-Zg-Ilc" userLabel="(Left) Left Drawer" customClass="JVLeftDrawerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="10" sectionFooterHeight="10" id="php-L1-MgB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,12 +150,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Rh-Uq-obt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-159" y="361"/>
+            <point key="canvasLocation" x="-181" y="361"/>
         </scene>
-        <!--Right Drawer View Controller-->
+        <!--(Right) Right Drawer-->
         <scene sceneID="ifz-d9-Utl">
             <objects>
-                <tableViewController storyboardIdentifier="JVRightDrawerViewControllerStoryboardID" id="KG7-2E-g6h" userLabel="Right Drawer View Controller" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="JVRightDrawerViewControllerStoryboardID" id="KG7-2E-g6h" userLabel="(Right) Right Drawer" customClass="JVRightDrawerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="10" sectionFooterHeight="10" id="dkQ-gw-Zrk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,18 +250,45 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3A9-Km-8RY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="361"/>
+            <point key="canvasLocation" x="932" y="361"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--(Center) Drawer Settings-->
+        <scene sceneID="NbS-OD-Kk1">
+            <objects>
+                <tableViewController id="lFn-gS-Wcx" userLabel="(Center) Drawer Settings" customClass="JVDrawerSettingsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="g5a-bi-LPc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Kh7-0g-CMt">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kh7-0g-CMt" id="wcP-ct-zP6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lFn-gS-Wcx" id="TBq-M5-xnr"/>
+                            <outlet property="delegate" destination="lFn-gS-Wcx" id="bg7-mq-czw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ajm-nZ-Rmq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ouq-7c-xFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="361"/>
+        </scene>
+        <!--(Nav-Center) GitHub Project Page-->
         <scene sceneID="mse-sm-am7">
             <objects>
-                <navigationController storyboardIdentifier="JVCenterViewControllerStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="G8o-dg-bca" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="JVCenterViewControllerStoryboardID" automaticallyAdjustsScrollViewInsets="NO" id="G8o-dg-bca" userLabel="(Nav-Center) GitHub Project Page" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="7uK-uP-nde">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7uK-uP-nde">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.098039215686274508" green="0.65098039215686276" blue="0.85098039215686272" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.098039215686274508" green="0.65098039215686276" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -273,6 +301,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jbp-IL-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="189" y="-335"/>
+        </scene>
+        <!--(Nav-Center) Drawer Settings-->
+        <scene sceneID="Z73-Hd-JUQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mRH-2t-zne" userLabel="(Nav-Center) Drawer Settings" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ROL-EY-01C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lFn-gS-Wcx" kind="relationship" relationship="rootViewController" id="TPA-pq-HkO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zol-lK-HuI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="-335"/>
         </scene>
     </scenes>
     <resources>
