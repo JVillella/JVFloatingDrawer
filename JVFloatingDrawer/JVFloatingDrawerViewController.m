@@ -252,6 +252,16 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     [self.centerViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
+#pragma mark - Status Bar
+
+- (UIViewController *)childViewControllerForStatusBarHidden {
+    return self.centerViewController;
+}
+
+- (UIViewController *)childViewControllerForStatusBarStyle {
+    return self.centerViewController;
+}
+
 #pragma mark - Memory
 
 - (void)didReceiveMemoryWarning {
