@@ -9,8 +9,7 @@
 #import "JVFloatingDrawerView.h"
 
 static const CGFloat kJVCenterViewContainerCornerRadius = 5.0;
-
-static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
+static const CGFloat kJVDefaultViewContainerWidth = 280.0;
 
 @interface JVFloatingDrawerView ()
 
@@ -63,7 +62,8 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     [self.leftViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.leftViewContainer];
     
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual
+                                                                          toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kJVDefaultViewContainerWidth];
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeHeight   relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0],
         [NSLayoutConstraint constraintWithItem:self.leftViewContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0],
@@ -74,7 +74,6 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     [self addConstraints:constraints];
     
     self.leftViewContainerWidthConstraint = widthConstraint;
-    self.leftViewContainerRevealWidth = kJVDefaultViewContainerRevealWidth;
 }
 
 - (void)setupRightViewContainer {
@@ -83,7 +82,8 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     [self.rightViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addSubview:self.rightViewContainer];
     
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual
+                                                                          toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kJVDefaultViewContainerWidth];
     NSArray *constraints = @[
         [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual  toItem:self attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0],
         [NSLayoutConstraint constraintWithItem:self.rightViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0],
@@ -94,7 +94,6 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
     [self addConstraints:constraints];
     
     self.rightViewContainerWidthConstraint = widthConstraint;
-    self.rightViewContainerRevealWidth = kJVDefaultViewContainerRevealWidth;
 }
 
 - (void)setupCenterViewContainer {
@@ -115,19 +114,19 @@ static const CGFloat kJVDefaultViewContainerRevealWidth = 80.0;
 
 #pragma mark - Reveal Widths
 
-- (void)setLeftViewContainerRevealWidth:(CGFloat)leftViewContainerRevealWidth {
-    self.leftViewContainerWidthConstraint.constant = -leftViewContainerRevealWidth;
+- (void)setLeftViewContainerWidth:(CGFloat)leftViewContainerWidth {
+    self.leftViewContainerWidthConstraint.constant = leftViewContainerWidth;
 }
 
-- (void)setRightViewContainerRevealWidth:(CGFloat)rightViewContainerRevealWidth {
-    self.rightViewContainerWidthConstraint.constant = -rightViewContainerRevealWidth;
+- (void)setRightViewContainerWidth:(CGFloat)rightViewContainerWidth {
+    self.rightViewContainerWidthConstraint.constant = rightViewContainerWidth;
 }
 
-- (CGFloat)leftViewContainerRevealWidth {
+- (CGFloat)leftViewContainerWidth {
     return self.leftViewContainerWidthConstraint.constant;
 }
 
-- (CGFloat)rightViewContainerRevealWidth {
+- (CGFloat)rightViewContainerWidth {
     return self.rightViewContainerWidthConstraint.constant;
 }
 

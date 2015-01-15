@@ -26,8 +26,8 @@ typedef NS_ENUM(NSInteger, JVFloatingDrawerSide) {
 
 #pragma mark - Reveal Widths
 
-@property (nonatomic, assign) CGFloat leftDrawerRevealWidth;
-@property (nonatomic, assign) CGFloat rightDrawerRevealWidth;
+@property (nonatomic, assign) CGFloat leftDrawerWidth;
+@property (nonatomic, assign) CGFloat rightDrawerWidth;
 
 #pragma mark - Interaction
 
