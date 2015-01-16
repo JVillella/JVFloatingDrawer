@@ -7,9 +7,12 @@
 //
 
 #import "JVDrawerSettingsTableViewController.h"
+#import "JVFloatingDrawerSpringAnimator.h"
 #import "AppDelegate.h"
 
 @interface JVDrawerSettingsTableViewController ()
+
+@property (nonatomic, strong, readonly) JVFloatingDrawerSpringAnimator *drawerAnimator;
 
 #pragma mark Labels
 
@@ -32,10 +35,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self actionAnimationDurationValueChanged:self.animationDurationSlider];
-    [self actionAnimationDelayValueChanged:self.animationDelaySlider];
+    [self configureSliders];
+}
+
+- (void)configureSliders {
+    self.animationDurationSlider.value     = self.drawerAnimator.animationDuration;
+    self.animationDelaySlider.value        = self.drawerAnimator.animationDelay;
+    self.initialSpringVelocitySlider.value = self.drawerAnimator.initialSpringVelocity;
+    self.springDampingSlider.value         = self.drawerAnimator.springDamping;
+    
+    [self actionAnimationDurationValueChanged:    self.animationDurationSlider];
+    [self actionAnimationDelayValueChanged:       self.animationDelaySlider];
     [self actionInitialSpringVelocityValueChanged:self.initialSpringVelocitySlider];
-    [self actionSpringDampingValueChanged:self.springDampingSlider];
+    [self actionSpringDampingValueChanged:        self.springDampingSlider];
 }
 
 #pragma mark - Actions
@@ -52,18 +64,28 @@
 
 - (IBAction)actionAnimationDurationValueChanged:(UISlider *)slider {
     self.animationDurationLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+    self.drawerAnimator.animationDuration = slider.value;
 }
 
 - (IBAction)actionAnimationDelayValueChanged:(UISlider *)slider {
     self.animationDelayLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+    self.drawerAnimator.animationDelay = slider.value;
 }
 
 - (IBAction)actionInitialSpringVelocityValueChanged:(UISlider *)slider {
     self.initialSpringVelocityLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+    self.drawerAnimator.initialSpringVelocity = slider.value;
 }
 
 - (IBAction)actionSpringDampingValueChanged:(UISlider *)slider {
     self.springDampingLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+    self.drawerAnimator.springDamping = slider.value;
+}
+
+#pragma mark - Helpers
+
+- (JVFloatingDrawerSpringAnimator *)drawerAnimator {
+    return [[AppDelegate globalDelegate] drawerAnimator];
 }
 
 #pragma mark - Memory

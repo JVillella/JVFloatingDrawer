@@ -95,7 +95,7 @@ static NSString * const kJVDrawerSettingsViewControllerStoryboardID = @"JVDrawer
     return _drawerSettingsViewController;
 }
 
-- (id<JVFloatingDrawerAnimation>)drawerAnimator {
+- (JVFloatingDrawerSpringAnimator *)drawerAnimator {
     if (!_drawerAnimator) {
         _drawerAnimator = [[JVFloatingDrawerSpringAnimator alloc] init];
     }

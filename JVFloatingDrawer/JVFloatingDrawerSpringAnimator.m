@@ -25,9 +25,9 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
 - (void)setup {
     // Defaults
     self.animationDelay = 0.0;
-    self.animationDuration = 0.6;
-    self.initialSpringVelocity = 3.0;
-    self.springDamping = 2.0;
+    self.animationDuration = 0.7;
+    self.initialSpringVelocity = 9.0;
+    self.springDamping = 0.9;
 }
 
 #pragma mark - Animator Implementations
@@ -40,9 +40,12 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
     };
     
     if (animated) {
-        [UIView animateWithDuration:self.animationDuration delay:self.animationDelay
-             usingSpringWithDamping:self.springDamping initialSpringVelocity:self.initialSpringVelocity
-                            options:UIViewAnimationOptionCurveEaseOut animations:springAnimation
+        [UIView animateWithDuration:self.animationDuration
+                              delay:self.animationDelay
+             usingSpringWithDamping:self.springDamping
+              initialSpringVelocity:self.initialSpringVelocity
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:springAnimation
                          completion:nil];
     } else {
         springAnimation(); // Call spring animation block without animating
@@ -59,7 +62,7 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
                               delay:self.animationDelay
              usingSpringWithDamping:self.springDamping
               initialSpringVelocity:self.initialSpringVelocity
-                            options:UIViewAnimationOptionCurveEaseOut
+                            options:UIViewAnimationOptionCurveLinear
                          animations:springAnimation completion:completion];
     } else {
         springAnimation(); // Call spring animation block without animating
@@ -79,7 +82,7 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
                           delay:self.animationDelay
          usingSpringWithDamping:self.springDamping
           initialSpringVelocity:self.initialSpringVelocity
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveLinear
                      animations:springAnimation
                      completion:nil];
 }

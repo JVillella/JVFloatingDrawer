@@ -181,7 +181,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0UX-sl-yVQ" id="fNk-Mv-fTC">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.59999999999999998" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="JDh-8k-ezu">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="JDh-8k-ezu">
                                                     <rect key="frame" x="40" y="15" width="266" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="hV1-JC-Qyd"/>
@@ -216,7 +216,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R0u-wQ-ehs" id="XG0-iL-ouP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="pVE-jK-TaN">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="pVE-jK-TaN">
                                                     <rect key="frame" x="40" y="15" width="266" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="6Ji-OQ-TLQ"/>
@@ -251,7 +251,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q4e-hE-uYO" id="Ykc-Fy-Ktr">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="klQ-Rb-qtz">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="klQ-Rb-qtz">
                                                     <rect key="frame" x="40" y="15" width="266" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="nIZ-ev-9tE"/>
@@ -286,7 +286,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fxj-IA-5kU" id="fxK-Gd-k34">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="VWn-fS-2d7">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="VWn-fS-2d7">
                                                     <rect key="frame" x="40" y="15" width="266" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="zKP-qT-9WN"/>
