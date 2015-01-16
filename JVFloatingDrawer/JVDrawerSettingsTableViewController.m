@@ -11,12 +11,31 @@
 
 @interface JVDrawerSettingsTableViewController ()
 
+#pragma mark Labels
+
+@property (weak, nonatomic) IBOutlet UILabel *animationDurationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *animationDelayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *initialSpringVelocityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *springDampingLabel;
+
+#pragma mark Sliders
+
+@property (weak, nonatomic) IBOutlet UISlider *animationDurationSlider;
+@property (weak, nonatomic) IBOutlet UISlider *animationDelaySlider;
+@property (weak, nonatomic) IBOutlet UISlider *initialSpringVelocitySlider;
+@property (weak, nonatomic) IBOutlet UISlider *springDampingSlider;
+
 @end
 
 @implementation JVDrawerSettingsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self actionAnimationDurationValueChanged:self.animationDurationSlider];
+    [self actionAnimationDelayValueChanged:self.animationDelaySlider];
+    [self actionInitialSpringVelocityValueChanged:self.initialSpringVelocitySlider];
+    [self actionSpringDampingValueChanged:self.springDampingSlider];
 }
 
 #pragma mark - Actions
@@ -27,6 +46,24 @@
 
 - (IBAction)actionToggleRightDrawer:(id)sender {
     [[AppDelegate globalDelegate] toggleRightDrawer:self animated:YES];
+}
+
+#pragma mark Sliders
+
+- (IBAction)actionAnimationDurationValueChanged:(UISlider *)slider {
+    self.animationDurationLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+}
+
+- (IBAction)actionAnimationDelayValueChanged:(UISlider *)slider {
+    self.animationDelayLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+}
+
+- (IBAction)actionInitialSpringVelocityValueChanged:(UISlider *)slider {
+    self.initialSpringVelocityLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
+}
+
+- (IBAction)actionSpringDampingValueChanged:(UISlider *)slider {
+    self.springDampingLabel.text = [NSString stringWithFormat:@"%.02f", slider.value];
 }
 
 #pragma mark - Memory

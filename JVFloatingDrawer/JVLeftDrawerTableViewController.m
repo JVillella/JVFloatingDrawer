@@ -7,7 +7,7 @@
 //
 
 #import "JVLeftDrawerTableViewController.h"
-#import "JVDrawerTableViewCell.h"
+#import "JVLeftDrawerTableViewCell.h"
 #import "AppDelegate.h"
 #import "JVFloatingDrawerViewController.h"
 
@@ -46,7 +46,7 @@ static NSString * const kJVDrawerCellReuseIdentifier = @"JVDrawerCellReuseIdenti
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JVDrawerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kJVDrawerCellReuseIdentifier forIndexPath:indexPath];
+    JVLeftDrawerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kJVDrawerCellReuseIdentifier forIndexPath:indexPath];
     
     if(indexPath.row == kJVDrawerSettingsIndex) {
         cell.titleText = @"Drawer Settings";

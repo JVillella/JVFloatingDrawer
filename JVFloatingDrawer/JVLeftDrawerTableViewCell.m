@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 JVillella. All rights reserved.
 //
 
-#import "JVDrawerTableViewCell.h"
+#import "JVLeftDrawerTableViewCell.h"
 
-@interface JVDrawerTableViewCell ()
+@interface JVLeftDrawerTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
-@implementation JVDrawerTableViewCell
+@implementation JVLeftDrawerTableViewCell
 
 - (void)awakeFromNib {
     self.selectionStyle = UITableViewCellSelectionStyleNone;

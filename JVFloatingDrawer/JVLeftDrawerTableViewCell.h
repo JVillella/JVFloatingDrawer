@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JVDrawerTableViewCell : UITableViewCell
+@interface JVLeftDrawerTableViewCell : UITableViewCell
 
 @property (nonatomic, copy) NSString *titleText;
 @property (nonatomic, strong) UIImage *iconImage;
