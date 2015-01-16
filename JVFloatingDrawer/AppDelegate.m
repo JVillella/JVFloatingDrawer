@@ -14,14 +14,11 @@ static NSString * const kJVDrawersStoryboardName = @"Drawers";
 
 static NSString * const kJVLeftDrawerStoryboardID = @"JVLeftDrawerViewControllerStoryboardID";
 static NSString * const kJVRightDrawerStoryboardID = @"JVRightDrawerViewControllerStoryboardID";
-static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboardID";
+
+static NSString * const kJVGitHubProjectPageViewControllerStoryboardID = @"JVGitHubProjectPageViewControllerStoryboardID";
+static NSString * const kJVDrawerSettingsViewControllerStoryboardID = @"JVDrawerSettingsViewControllerStoryboardID";
 
 @interface AppDelegate ()
-
-@property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
-@property (nonatomic, strong) UITableViewController *leftDrawerViewController;
-@property (nonatomic, strong) UITableViewController *rightDrawerViewController;
-@property (nonatomic, strong) UIViewController *centerViewController;
 
 @property (nonatomic, strong, readonly) UIStoryboard *drawersStoryboard;
 
@@ -42,27 +39,15 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
+- (void)applicationWillResignActive:(UIApplication *)application {}
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
+- (void)applicationDidEnterBackground:(UIApplication *)application {}
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
+- (void)applicationWillEnterForeground:(UIApplication *)application {}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+- (void)applicationDidBecomeActive:(UIApplication *)application {}
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
+- (void)applicationWillTerminate:(UIApplication *)application {}
 
 #pragma mark - Drawer View Controllers
 
@@ -74,6 +59,8 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
     return _drawerViewController;
 }
 
+#pragma mark Sides
+
 - (UITableViewController *)leftDrawerViewController {
     if (!_leftDrawerViewController) {
         _leftDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVLeftDrawerStoryboardID];
@@ -83,19 +70,37 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
 }
 
 - (UITableViewController *)rightDrawerViewController {
-    if(!_rightDrawerViewController) {
+    if (!_rightDrawerViewController) {
         _rightDrawerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVRightDrawerStoryboardID];
     }
     
     return _rightDrawerViewController;
 }
 
-- (UIViewController *)centerViewController {
-    if (!_centerViewController) {
-        _centerViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVCenterStoryboardID];
+#pragma mark Center
+
+- (UIViewController *)githubViewController {
+    if (!_githubViewController) {
+        _githubViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVGitHubProjectPageViewControllerStoryboardID];
     }
     
-    return _centerViewController;
+    return _githubViewController;
+}
+
+- (UIViewController *)drawerSettingsViewController {
+    if (!_drawerSettingsViewController) {
+        _drawerSettingsViewController = [self.drawersStoryboard instantiateViewControllerWithIdentifier:kJVDrawerSettingsViewControllerStoryboardID];
+    }
+    
+    return _drawerSettingsViewController;
+}
+
+- (id<JVFloatingDrawerAnimation>)drawerAnimator {
+    if (!_drawerAnimator) {
+        _drawerAnimator = [[JVFloatingDrawerSpringAnimator alloc] init];
+    }
+    
+    return _drawerAnimator;
 }
 
 - (UIStoryboard *)drawersStoryboard {
@@ -109,9 +114,9 @@ static NSString * const kJVCenterStoryboardID = @"JVCenterViewControllerStoryboa
 - (void)configureDrawerViewController {
     self.drawerViewController.leftViewController = self.leftDrawerViewController;
     self.drawerViewController.rightViewController = self.rightDrawerViewController;
-    self.drawerViewController.centerViewController = self.centerViewController;
+    self.drawerViewController.centerViewController = self.drawerSettingsViewController;
     
-    self.drawerViewController.animator = [[JVFloatingDrawerSpringAnimator alloc] init];
+    self.drawerViewController.animator = self.drawerAnimator;
     
     self.drawerViewController.backgroundImage = [UIImage imageNamed:@"sky"];
 }

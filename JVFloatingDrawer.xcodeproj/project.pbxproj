@@ -20,6 +20,7 @@
 		B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */; };
 		B9E746E71A684DD700C5163E /* JVRightDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */; };
 		B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */; };
+		B9E746FB1A68959100C5163E /* JVDrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746FA1A68959100C5163E /* JVDrawerTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVRightDrawerTableViewController.m; sourceTree = "<group>"; };
 		B9E746E81A684E4000C5163E /* JVDrawerSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVDrawerSettingsTableViewController.h; sourceTree = "<group>"; };
 		B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVDrawerSettingsTableViewController.m; sourceTree = "<group>"; };
+		B9E746F91A68959100C5163E /* JVDrawerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVDrawerTableViewCell.h; sourceTree = "<group>"; };
+		B9E746FA1A68959100C5163E /* JVDrawerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVDrawerTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,15 +113,17 @@
 				2CE7E6891A62ED220072121A /* JVFloatingDrawerSpringAnimator.h */,
 				2CE7E68A1A62ED230072121A /* JVFloatingDrawerSpringAnimator.m */,
 				2CE7E66A1A62D8470072121A /* Drawers.storyboard */,
+				B9E746F91A68959100C5163E /* JVDrawerTableViewCell.h */,
+				B9E746FA1A68959100C5163E /* JVDrawerTableViewCell.m */,
 				B9E746E21A684DC800C5163E /* JVLeftDrawerTableViewController.h */,
 				B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */,
 				B9E746E51A684DD700C5163E /* JVRightDrawerTableViewController.h */,
 				B9E746E61A684DD700C5163E /* JVRightDrawerTableViewController.m */,
 				2CE7E66D1A62D8470072121A /* Images.xcassets */,
 				2CE7E69E1A636CBD0072121A /* JVGitHubViewController.h */,
+				2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */,
 				B9E746E81A684E4000C5163E /* JVDrawerSettingsTableViewController.h */,
 				B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */,
-				2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */,
 				2CE7E66F1A62D8470072121A /* LaunchScreen.xib */,
 				2CE7E6601A62D8470072121A /* Supporting Files */,
 			);
@@ -257,6 +262,7 @@
 				B9E746E71A684DD700C5163E /* JVRightDrawerTableViewController.m in Sources */,
 				B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
+				B9E746FB1A68959100C5163E /* JVDrawerTableViewCell.m in Sources */,
 				B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */,
 				2CE7E6911A63558E0072121A /* JVFloatingDrawerView.m in Sources */,
 				2CE7E6A01A636CBD0072121A /* JVGitHubViewController.m in Sources */,
