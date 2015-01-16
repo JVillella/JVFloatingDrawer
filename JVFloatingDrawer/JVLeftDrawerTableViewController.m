@@ -31,7 +31,10 @@ static NSString * const kJVDrawerCellReuseIdentifier = @"JVDrawerCellReuseIdenti
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(kJVTableViewTopInset, 0.0, 0.0, 0.0);
     self.clearsSelectionOnViewWillAppear = NO;
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:kJVDrawerSettingsIndex inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 

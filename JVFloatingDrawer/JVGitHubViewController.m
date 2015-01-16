@@ -9,7 +9,7 @@
 #import "JVGitHubViewController.h"
 #import "AppDelegate.h"
 
-static NSString * const kJVGithubProjectPage = @"https://github.com/JVillella/JVFloatingDrawer";
+static NSString * const kJVGithubProjectPage = @"http://github.com/JVillella/JVFloatingDrawer";
 
 @interface JVGitHubViewController ()
 
