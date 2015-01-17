@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  JVFloatingDrawer: 40289d95a44671d721ac46fef7e913f51940f4bf
+  JVFloatingDrawer: d82745ddb523ca303c5eab6c7b2e2e8d8da5c656
 
 COCOAPODS: 0.35.0
