@@ -65,21 +65,21 @@ The background image is set by assigning the `backgroundImage` property.
 
 ##### Animators
 
-Animators are main players of `JVFloatingDrawer`. `JVFloatingDrawer` comes with a prebuilt spring animator that can be customized by settings its `animationDuration`, `animationDelay`, `springDamping`, and `initialSpringVelocity`. After instantiating a new animator object you assign it to the `animator` property on the `JVFloatingDrawerViewController` to let it work its magic. You can make your own animators by implementing the `JVFloatingDrawerAnimation` protocol. More on that later.
+Animators are the main players of `JVFloatingDrawer`. `JVFloatingDrawer` comes with a prebuilt spring animator that can be customized by settings its `animationDuration`, `animationDelay`, `springDamping`, and `initialSpringVelocity`. After instantiating a new animator object you assign it to the `animator` property on the `JVFloatingDrawerViewController` to let it work its magic. You can make your own animators by implementing the `JVFloatingDrawerAnimation` protocol. More on that later.
 
 #### `JVFloatingDrawerView`
 
-`JVFloatingDrawerView` is an internal class that you will not have to deal with as a user. It's tasked with laying out the drawer via autolayout constraints. It handles decorations like the shadow and rounded corners you see around the center view controller. Each view controller (center, left, and right) of the `JVFloatingDrawerViewController` are wrapper in `UIView` containers. This is how we support swapping drawers.
+`JVFloatingDrawerView` is an internal class that you will not have to deal with as a user. It's tasked with laying out the drawer via autolayout constraints. It handles decorations like the shadow and rounded corners you see around the center view controller. Each view controller (center, left, and right) of the `JVFloatingDrawerViewController` are wrapped in `UIView` containers. This is how we support swapping drawers.
 
 ## Creating Your Own Animators
 
-The `JVFloatingDrawerSpringAnimator` class is a featured animator for you to use. If you want to create your own however, it's easy. Animators all adhere to the `JVFloatingDrawerAnimation` protocol. `JVFloatingDrawerAnimation` has two **required** methods *presentation* and *dismissal*:
+The `JVFloatingDrawerSpringAnimator` class is a featured animator for you to use. If you want to create your own however, it's easy. All animators adhere to the `JVFloatingDrawerAnimation` protocol. `JVFloatingDrawerAnimation` has two *required* methods **presentation** and **dismissal**:
 
 #### Presentation
 
 `- (void)presentationWithSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView animated:(BOOL)animated completion:(void(^)(BOOL finished))completion`
 
-Given a drawer side, the containing side view, and the containing center view, implementations must bring the side view on screen. If the `drawerSide` is equal to `JVFloatingDrawerSideLeft` the view will be *left-adjacent* to the  `centerView`. If the `drawerSide` is equal to `JVFloatingDrawerSideRight` the view will be *right-adjacent* to the  `centerView`. You have complete control over how you do this. I used view transforms in my implementation and called `UIView`'s `-animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:]`. Technically, you don't even have to make it floating. You could copy the traditional drawer slide-in style if you like. Finally, implementations must react accordingly if the user wants this animated or not via the `animated` flag, and then call the `completion` block at the end.
+Given a drawer side, the containing side view, and the containing center view, implementations must bring the side view on screen. If the `drawerSide` is equal to `JVFloatingDrawerSideLeft` the view will be *left-adjacent* to the  `centerView`. If the `drawerSide` is equal to `JVFloatingDrawerSideRight` the view will be *right-adjacent* to the  `centerView`. You have complete control over how you do this. I used view transforms in my implementation and called `UIView`'s `-animateWithDuration:delay:usingSpringWithDamping:...`. Technically, you don't even have to make it floating. You could copy the traditional drawer slide-in style if you like. Finally, implementations must react accordingly if the user wants this animated or not via the `animated` flag, and then call the `completion` block at the end.
 
 #### Dismissal
 
@@ -93,7 +93,7 @@ Dismissal is the exact same as presentation except it needs to be able to get th
 
 `- (void)didRotateOpenDrawerWithOpenSide:(JVFloatingDrawerSide)drawerSide sideView:(UIView *)sideView centerView:(UIView *)centerView`
 
-`-willRotateOpenDrawerWithOpenSide:sideView:centerView` is invoked right *before* a device orientation change so the animator can handle it. `-didRotateOpenDrawerWithOpenSide:sideView:centerView` is invoked right *after*. The `JVFloatingDrawerSpringAnimator` only implements `-didRotateOpenDrawerWithOpenSide:sideView:centerView` and calls the same code as `-presentationWithSide:sideView:centerView:animated:completion:`.
+`-willRotateOpenDrawerWithOpenSide:sideView:centerView` is invoked right *before* a device orientation change so the animator can handle it. `-didRotateOpenDrawerWithOpenSide:sideView:centerView` is invoked right *after*. The `JVFloatingDrawerSpringAnimator` only implements `-didRotateOpenDrawerWithOpenSide:sideView:centerView` and calls the same code as `-presentationWithSide:sideView:centerView:animated:completion:` in it.
 
 ## Author
 
