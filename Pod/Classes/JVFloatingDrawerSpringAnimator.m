@@ -27,7 +27,7 @@ static const CGFloat kJVCenterViewDestinationScale = 0.7;
     self.animationDelay = 0.0;
     self.animationDuration = 0.7;
     self.initialSpringVelocity = 9.0;
-    self.springDamping = 0.9;
+    self.springDamping = 0.8;
 }
 
 #pragma mark - Animator Implementations
