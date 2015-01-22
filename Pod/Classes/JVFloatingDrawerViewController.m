@@ -161,17 +161,19 @@ NSString *JVFloatingDrawerSideString(JVFloatingDrawerSide side) {
     [sourceViewController.view removeFromSuperview];
     [sourceViewController removeFromParentViewController];
     
-    [self addChildViewController:destinationViewController];
-    [container addSubview:destinationViewController.view];
+    if (destinationViewController) {
+        [self addChildViewController:destinationViewController];
+        [container addSubview:destinationViewController.view];
    
-    UIView *destinationView = destinationViewController.view;
-    destinationView.translatesAutoresizingMaskIntoConstraints = NO;
+        UIView *destinationView = destinationViewController.view;
+        destinationView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(destinationView);
-    [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[destinationView]|" options:0 metrics:nil views:views]];
-    [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[destinationView]|" options:0 metrics:nil views:views]];
+        NSDictionary *views = NSDictionaryOfVariableBindings(destinationView);
+        [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[destinationView]|" options:0 metrics:nil views:views]];
+        [container addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[destinationView]|" options:0 metrics:nil views:views]];
 
-    [destinationViewController didMoveToParentViewController:self];
+        [destinationViewController didMoveToParentViewController:self];
+    }
 }
 
 #pragma mark - Reveal Widths
