@@ -1,5 +1,7 @@
 # JVFloatingDrawer
 
+[![Join the chat at https://gitter.im/JVillella/JVFloatingDrawer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JVillella/JVFloatingDrawer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![CI Status](http://img.shields.io/travis/JVillella/JVFloatingDrawer.svg?style=flat)](https://travis-ci.org/JVillella/JVFloatingDrawer)
 [![Version](https://img.shields.io/cocoapods/v/JVFloatingDrawer.svg?style=flat)](http://cocoadocs.org/docsets/JVFloatingDrawer)
 [![License](https://img.shields.io/cocoapods/l/JVFloatingDrawer.svg?style=flat)](http://cocoadocs.org/docsets/JVFloatingDrawer)
