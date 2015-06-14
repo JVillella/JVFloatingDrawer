@@ -16,9 +16,6 @@
 		2CE7E67D1A62D8480072121A /* JVFloatingDrawerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E67C1A62D8480072121A /* JVFloatingDrawerTests.m */; };
 		2CE7E6A01A636CBD0072121A /* JVGitHubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7E69F1A636CBD0072121A /* JVGitHubViewController.m */; };
 		9C8841BB0C583D5E61D80A4E /* libPods-JVFloatingDrawerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 225393A6ADE627876AF04BE1 /* libPods-JVFloatingDrawerTests.a */; };
-		B9352DD91A6AE74E008D3B4E /* JVFloatingDrawer.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B9352DD61A6AE74E008D3B4E /* JVFloatingDrawer.podspec */; };
-		B9352DDA1A6AE74E008D3B4E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B9352DD71A6AE74E008D3B4E /* LICENSE */; };
-		B9352DDB1A6AE74E008D3B4E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B9352DD81A6AE74E008D3B4E /* README.md */; };
 		B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E31A684DC800C5163E /* JVLeftDrawerTableViewController.m */; };
 		B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746E91A684E4000C5163E /* JVDrawerSettingsTableViewController.m */; };
 		B9E746FB1A68959100C5163E /* JVLeftDrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E746FA1A68959100C5163E /* JVLeftDrawerTableViewCell.m */; };
@@ -268,10 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CE7E66C1A62D8470072121A /* Drawers.storyboard in Resources */,
-				B9352DD91A6AE74E008D3B4E /* JVFloatingDrawer.podspec in Resources */,
 				2CE7E6711A62D8470072121A /* LaunchScreen.xib in Resources */,
 				2CE7E66E1A62D8470072121A /* Images.xcassets in Resources */,
-				B9352DDA1A6AE74E008D3B4E /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +350,6 @@
 				2CE7E6661A62D8470072121A /* AppDelegate.m in Sources */,
 				B9E746E41A684DC800C5163E /* JVLeftDrawerTableViewController.m in Sources */,
 				2CE7E6631A62D8470072121A /* main.m in Sources */,
-				B9352DDB1A6AE74E008D3B4E /* README.md in Sources */,
 				B9E746FB1A68959100C5163E /* JVLeftDrawerTableViewCell.m in Sources */,
 				B9E746EB1A684E4000C5163E /* JVDrawerSettingsTableViewController.m in Sources */,
 				2CE7E6A01A636CBD0072121A /* JVGitHubViewController.m in Sources */,
